@@ -1,5 +1,3 @@
-import Image from "next/image";
-
 const ArrowUpRight = ({ size = 18 }: { size?: number }) => (
   <svg
     aria-hidden="true"
@@ -108,7 +106,7 @@ const milestones = [
   }
 ];
 
-export default function Home() {
+export default function App() {
   return (
     <main>
       <header className="site-header">
@@ -166,12 +164,12 @@ export default function Home() {
         <div className="hero-visual">
           <div className="portrait-panel">
             <div className="portrait-accent" aria-hidden="true" />
-            <Image
+            <img
               src="/philipp-graef.jpg"
               alt="Dr. med. Philipp Graef"
               width={281}
               height={354}
-              priority
+              fetchPriority="high"
             />
             <div className="portrait-caption">
               <span>Arzt</span>
@@ -244,11 +242,12 @@ export default function Home() {
       <section className="book section" aria-labelledby="book-title">
         <div className="book-visual">
           <div className="book-shadow" aria-hidden="true" />
-          <Image
+          <img
             src="/buch-gebaermuttertransplantation.webp"
             alt="Buchcover: Die Gebärmuttertransplantation – Medizin, Recht, Ethik"
             width={741}
             height={1050}
+            loading="lazy"
           />
         </div>
         <div className="book-copy">
