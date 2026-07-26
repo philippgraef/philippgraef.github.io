@@ -1,9 +1,9 @@
 # Philipp Graef — persönliche Homepage
 
 Professioneller One-Page-Auftritt für Dr. med. Philipp Graef, LL.M. an der
-Schnittstelle von Medizin, Recht, Lehre und Wissenschaft. Die Seite nutzt
-Vinext, damit die Produktionsausgabe dem von OpenAI Sites erwarteten
-Server-/Client-Format entspricht.
+Schnittstelle von Medizin, Recht, Lehre und Wissenschaft. Vite erzeugt eine
+kompakte statische Ausgabe; ein Cloudflare-kompatibler Worker liefert HTML,
+Styles, Skript und Bilder ohne zusätzliche Server-Abhängigkeiten aus.
 
 ## Lokal starten
 
@@ -12,7 +12,7 @@ pnpm install
 pnpm dev
 ```
 
-Danach ist die Seite unter `http://localhost:3000` erreichbar.
+Danach ist die Seite unter der von Vite ausgegebenen lokalen Adresse erreichbar.
 
 ## Datenschutz bei der Inhaltsauswahl
 
