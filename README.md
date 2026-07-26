@@ -1,7 +1,9 @@
 # Philipp Graef — persönliche Homepage
 
 Professioneller One-Page-Auftritt für Dr. med. Philipp Graef, LL.M. an der
-Schnittstelle von Medizin, Recht, Lehre und Wissenschaft.
+Schnittstelle von Medizin, Recht, Lehre und Wissenschaft. Die Seite nutzt
+Vinext, damit die Produktionsausgabe dem von OpenAI Sites erwarteten
+Server-/Client-Format entspricht.
 
 ## Lokal starten
 
