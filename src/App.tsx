@@ -246,9 +246,9 @@ const educationMilestones = [
   },
   {
     period: "2022",
-    title: "Zweites juristisches Staatsexamen",
+    title: "Zweites juristisches Staatsexamen · Ass. iur.",
     place: "Land Baden-Württemberg",
-    text: "Abschluss der juristischen Ausbildung."
+    text: "Abschluss der juristischen Ausbildung und Qualifikation als Volljurist."
   },
   {
     period: "2019",
@@ -378,8 +378,46 @@ const projects = [
     meta: "Entrepreneurship · Save Order Safe",
     title: "Mehr Sport. Weniger Leerstand.",
     text: "Als Mitgründer und COO entwickle ich eine Plattform, die kurzfristig frei werdende Sportbuchungen wieder verfügbar macht.",
+    href: "#save-order-safe",
+    link: "Zum Venture Spotlight"
+  }
+];
+
+const qualifications = [
+  "Dr. med.",
+  "Ass. iur.",
+  "Volljurist",
+  "LL.M. Medizinrecht",
+  "Diplom-Jurist",
+  "Hochschullehrer",
+  "Autor",
+  "Unternehmer"
+];
+
+const saveOrderSafeOffers = [
+  {
+    number: "01",
+    label: "Für Sportler:innen",
+    title: "Last-Minute-Sport",
+    text: "Buchungen einfach weitergeben, Stornogebühren vermeiden und kurzfristig vergünstigte Sportangebote finden.",
     href: "https://saveordersafe.com/",
-    link: "Save Order Safe entdecken"
+    link: "saveordersafe.com"
+  },
+  {
+    number: "02",
+    label: "Für Clubs & Anlagen",
+    title: "SOS Club Solutions",
+    text: "Moderne Vereinswebsites mit eigener Domain, Hosting, intelligenter Buchungslogik, SOS-Ausfallschutz und individuellen Erweiterungen.",
+    href: "https://clubsolutions.saveordersafe.com/",
+    link: "clubsolutions.saveordersafe.com"
+  },
+  {
+    number: "03",
+    label: "Für Multiplikator:innen",
+    title: "SOS Partnerprogramm",
+    text: "Sportvereine digitalisieren helfen und 10 % Provision auf jede vermittelte SOS Club Solutions Website erhalten.",
+    href: "https://partner.saveordersafe.com/",
+    link: "partner.saveordersafe.com"
   }
 ];
 
@@ -440,6 +478,7 @@ export default function App() {
         <nav aria-label="Hauptnavigation">
           <a href="#profil">Profil</a>
           <a href="#projekte">Projekte</a>
+          <a href="#save-order-safe">SOS</a>
           <a href="#publikationen">Publikationen</a>
           <a href="#vita">Vita</a>
         </nav>
@@ -465,9 +504,9 @@ export default function App() {
             Zukunft gestalten.
           </h1>
           <p className="hero-intro">
-            Dr. med. Philipp Graef, LL.M. verbindet ärztliche Erfahrung mit
-            juristischer Präzision – in Lehre, Forschung, Publikation und
-            unternehmerischer Innovation.
+            Dr. med. Philipp Graef, Ass. iur., LL.M. verbindet als Arzt und
+            Volljurist klinische Erfahrung mit juristischer Präzision – in
+            Lehre, Forschung, Publikation und unternehmerischer Innovation.
           </p>
           <div className="hero-actions">
             <a className="button button-primary" href="#profil">
@@ -481,6 +520,8 @@ export default function App() {
           </div>
           <div className="hero-credentials" aria-label="Qualifikationen">
             <span>Dr. med.</span>
+            <span>Ass. iur.</span>
+            <span>Volljurist</span>
             <span>LL.M.</span>
             <span>Diplom-Jurist</span>
           </div>
@@ -499,18 +540,29 @@ export default function App() {
           </div>
           <div className="portrait-caption">
             <span>Arzt</span>
-            <span>Jurist</span>
+            <span>Volljurist</span>
             <span>Hochschullehrer</span>
           </div>
           <div className="hero-note">
-            <span>Mein Fokus</span>
-            <p>Wo medizinischer Fortschritt auf Verantwortung trifft.</p>
+            <span>Dr. med. · Ass. iur.</span>
+            <p>Medizin und Recht nicht nebeneinander, sondern zusammen denken.</p>
           </div>
         </div>
 
         <div className="scroll-note" aria-hidden="true">
           <span />
           Entdecken
+        </div>
+      </section>
+
+      <section className="qualification-marquee" aria-label={qualifications.join(", ")}>
+        <div aria-hidden="true">
+          {[...qualifications, ...qualifications].map((qualification, index) => (
+            <span key={`${qualification}-${index}`}>
+              {qualification}
+              <i>✦</i>
+            </span>
+          ))}
         </div>
       </section>
 
@@ -581,6 +633,73 @@ export default function App() {
                 <ArrowUpRight size={16} />
               </a>
             </article>
+          ))}
+        </div>
+      </section>
+
+      <section
+        className="venture section"
+        id="save-order-safe"
+        aria-labelledby="venture-title"
+      >
+        <div className="venture-glow venture-glow-one" aria-hidden="true" />
+        <div className="venture-glow venture-glow-two" aria-hidden="true" />
+        <div className="venture-topline">
+          <p className="eyebrow light">
+            <span />
+            Venture Spotlight
+          </p>
+          <span className="venture-role">Mitgründer & COO</span>
+        </div>
+        <div className="venture-hero">
+          <div>
+            <p className="venture-company">
+              Save Order Safe UG <span>(haftungsbeschränkt)</span>
+            </p>
+            <h2 id="venture-title">
+              Mehr Sport.
+              <br />
+              Weniger Leerstand.
+              <br />
+              <em>Mehr Gemeinschaft.</em>
+            </h2>
+          </div>
+          <div className="venture-intro">
+            <p>
+              Save Order Safe verbindet Sportler:innen, Vereine und
+              Freizeitanlagen in einem digitalen Ökosystem: kurzfristige
+              Ausfälle werden zu neuen Chancen, Kapazitäten besser genutzt und
+              Clubs technologisch zukunftsfähig.
+            </p>
+            <a
+              className="button button-light"
+              href="https://saveordersafe.com/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Unternehmen entdecken
+              <ArrowUpRight />
+            </a>
+          </div>
+        </div>
+        <div className="venture-offers">
+          {saveOrderSafeOffers.map((offer) => (
+            <a
+              className="venture-offer"
+              href={offer.href}
+              target="_blank"
+              rel="noreferrer"
+              key={offer.href}
+            >
+              <span className="venture-number">{offer.number}</span>
+              <p className="venture-label">{offer.label}</p>
+              <h3>{offer.title}</h3>
+              <p>{offer.text}</p>
+              <span className="venture-link">
+                {offer.link}
+                <ArrowUpRight size={16} />
+              </span>
+            </a>
           ))}
         </div>
       </section>
@@ -885,9 +1004,9 @@ export default function App() {
         <div className="footer-brand">
           <span className="brand-mark">PG</span>
           <p>
-            Dr. med. Philipp Graef, LL.M.
+            Dr. med. Philipp Graef, Ass. iur., LL.M.
             <br />
-            Medizin · Recht · Lehre · Innovation
+            Arzt · Volljurist · Hochschullehrer · Unternehmer
           </p>
         </div>
         <p className="footer-note">
