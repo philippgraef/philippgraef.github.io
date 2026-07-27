@@ -36,6 +36,7 @@ for (const match of [
 const publicAssets = [
   "/philipp-graef.jpg",
   "/buch-gebaermuttertransplantation.webp",
+  "/recht-medizinisch-cover.jpg",
   "/favicon.svg",
   "/robots.txt"
 ];

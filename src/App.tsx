@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 const ArrowUpRight = ({ size = 18 }: { size?: number }) => (
   <svg
     aria-hidden="true"
@@ -6,7 +8,13 @@ const ArrowUpRight = ({ size = 18 }: { size?: number }) => (
     viewBox="0 0 24 24"
     fill="none"
   >
-    <path d="M7 17 17 7M8 7h9v9" stroke="currentColor" strokeWidth="1.8" />
+    <path
+      d="M7 17 17 7M8 7h9v9"
+      stroke="currentColor"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="1.8"
+    />
   </svg>
 );
 
@@ -18,8 +26,21 @@ const ArrowRight = ({ size = 18 }: { size?: number }) => (
     viewBox="0 0 24 24"
     fill="none"
   >
-    <path d="M5 12h14m-5-5 5 5-5 5" stroke="currentColor" strokeWidth="1.8" />
+    <path
+      d="M5 12h14m-5-5 5 5-5 5"
+      stroke="currentColor"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="1.8"
+    />
   </svg>
+);
+
+const Plus = ({ open }: { open: boolean }) => (
+  <span className={`plus ${open ? "is-open" : ""}`} aria-hidden="true">
+    <span />
+    <span />
+  </span>
 );
 
 const fields = [
@@ -40,12 +61,20 @@ const fields = [
   },
   {
     number: "04",
-    title: "Forschung & Publikation",
-    text: "Interdisziplinäre Forschung zwischen Transplantationsmedizin, Recht, Ethik und Versorgung."
+    title: "Forschung & Innovation",
+    text: "Interdisziplinäre Forschung, neue Arbeitsmodelle und digitale Produkte mit gesellschaftlichem Nutzen."
   }
 ];
 
-const publications = [
+type Publication = {
+  year: string;
+  type: string;
+  title: string;
+  source: string;
+  href?: string;
+};
+
+const publications: Publication[] = [
   {
     year: "2025",
     type: "Rettungsmedizin",
@@ -55,20 +84,68 @@ const publications = [
     href: "https://rettungsdienst-archiv.de/artikel?keywords%5B%5D=2494"
   },
   {
+    year: "2023",
+    type: "Transplantationsrecht",
+    title: "Ist die Gebärmuttertransplantation in Deutschland zulässig?",
+    source: "Recht und Politik im Gesundheitswesen"
+  },
+  {
+    year: "2022",
+    type: "Chirurgie",
+    title: "Sleeve gastrectomy – a boon and a bane?!",
+    source: "99. Jahrestagung der Vereinigung der Bayerischen Chirurgie"
+  },
+  {
+    year: "2021",
+    type: "Chirurgie",
+    title:
+      "Rektumperforation mit Eviszeration des Intestinums bei externem Rektumprolaps",
+    source: "Mittelrheiner Chirurgenkongress, Böblingen"
+  },
+  {
+    year: "2021",
+    type: "Chirurgie",
+    title:
+      "Die Perinealhernie als seltene Komplikation nach extralevatorischer abdominoperinealer Rektumexstirpation",
+    source: "Mittelrheiner Chirurgenkongress, Böblingen"
+  },
+  {
+    year: "2021",
+    type: "Chirurgie",
+    title: "The “skinny” old lady hernia",
+    source: "Kongress Viszeralmedizin, Leipzig"
+  },
+  {
     year: "2021",
     type: "Wettbewerbsrecht",
     title:
       "Die Fortwirkungen des Skanska-Urteils: Sind dessen Grundsätze zur Passivlegitimation auf die Aktivlegitimation übertragbar?",
-    source: "WRP 2021, S. 880–885",
-    href: "https://eur-lex.europa.eu/legal-content/ET/ALL/?uri=CELEX%3A62017CJ0724_RES"
+    source: "WRP 2021, S. 880–885"
+  },
+  {
+    year: "2021",
+    type: "Pharmarecht",
+    title: "Ist Zugabenwerbung für Arzneimittel in Deutschland zulässig?",
+    source: "PharmR 2021"
   },
   {
     year: "2020",
     type: "Transplantationsrecht",
+    title: "Ist die (empfänger-)gerichtete Totenspende in Deutschland zulässig?",
+    source: "Recht und Politik im Gesundheitswesen 26 (2020), S. 83–94"
+  },
+  {
+    year: "2020",
+    type: "Kartellrecht",
+    title: "Beweiserleichterung im Kartellschadensersatz",
+    source: "Zeitschrift für das Juristische Studium"
+  },
+  {
+    year: "2020",
+    type: "Lebensmittelrecht",
     title:
-      "Ist die (empfänger-)gerichtete Totenspende in Deutschland zulässig?",
-    source: "Recht und Politik im Gesundheitswesen 26 (2020), S. 83–94",
-    href: "https://www.bundestag.de/resource/blob/1139140/L-505-Organspende.pdf"
+      "Animal Welfare nach der Novel-Food-Verordnung – auch für Insekten?",
+    source: "Natur und Recht"
   },
   {
     year: "2019",
@@ -79,34 +156,280 @@ const publications = [
   }
 ];
 
-const milestones = [
+const careerMilestones = [
+  {
+    period: "seit 2026",
+    title: "Mitgründer & COO",
+    place: "Save Order Safe UG (haftungsbeschränkt)",
+    text: "Aufbau einer Sport-Tech-Plattform für vergünstigte Last-Minute-Buchungen und die bessere Auslastung von Sportangeboten."
+  },
+  {
+    period: "seit 2025",
+    title: "Gutachter",
+    place: "Deutsche Medizinische Wochenschrift",
+    text: "Fachliche Begutachtung medizinischer und medizinrechtlicher Beiträge."
+  },
   {
     period: "seit 2023",
-    title: "Hochschullehre",
+    title: "Hochschullehrer",
     place: "Hochschule Fresenius · Fachbereich Gesundheit & Soziales",
-    text: "Anatomie, Physiologie und klinische Medizin – mit Schwerpunkten in Neurowissenschaften und KI in der Medizin."
+    text: "Anatomie, Physiologie und klinische Medizin mit Schwerpunkten in Neurowissenschaften und KI in der Medizin."
+  },
+  {
+    period: "seit 2023",
+    title: "Projektleiter · 4-Tage-Woche",
+    place: "ENCW-Gruppe",
+    text: "Psychologische und arbeitswissenschaftliche Langzeitbegleitung des gruppenweiten Arbeitszeitmodells."
   },
   {
     period: "seit 2022",
-    title: "Rechtswissenschaftliche Promotion",
-    place: "Universität Leipzig",
-    text: "Forschung zur Verfassungsmäßigkeit des § 8 Transplantationsgesetz."
+    title: "Doktorand der Rechtswissenschaft",
+    place: "Universität Leipzig · Prof. Dr. Bernd-Rüdiger Kern",
+    text: "Forschung zur Verfassungsmäßigkeit von § 8 Abs. 1 Satz 2 Transplantationsgesetz."
+  },
+  {
+    period: "seit 2022",
+    title: "Dozent",
+    place: "Klinikverbund Südwest",
+    text: "Unterricht und Prüfungskonzepte für Auszubildende in Pflege und Operationstechnischer Assistenz."
+  },
+  {
+    period: "2023–2024",
+    title: "Dozent",
+    place: "Ludwig Fresenius Schulen Berlin",
+    text: "Anatomie, Physiologie, klinische Medizin und Medizinrecht für Logopädie, Pflege und Physiotherapie."
+  },
+  {
+    period: "2022–2023",
+    title: "Dozent",
+    place: "Deutsche Hochschule für Gesundheit und Sport",
+    text: "Lehre an der Schnittstelle von Medizin, Gesundheit und wissenschaftlichem Arbeiten."
   },
   {
     period: "2020–2022",
     title: "Assistenzarzt für Chirurgie",
-    place: "Kliniken Nagold · Universität Tübingen",
-    text: "Klinische Tätigkeit in Allgemein-, Viszeral-, Gefäß- und Unfallchirurgie."
+    place: "Kliniken Nagold · Akademisches Lehrkrankenhaus der Universität Tübingen",
+    text: "Allgemein-, Viszeral-, Gefäß- und Unfallchirurgie sowie interprofessionelle Patientenversorgung."
   },
   {
-    period: "2011–2022",
-    title: "Doppelqualifikation Medizin & Recht",
-    place: "Universität Tübingen · Dresden International University",
-    text: "Dr. med., Diplom-Jurist, Zweites Staatsexamen und LL.M. Medizinrecht."
+    period: "2020",
+    title: "Wissenschaftlicher Mitarbeiter",
+    place: "Oppenländer Rechtsanwälte, Stuttgart",
+    text: "Rechtswissenschaftliche Recherche mit Schwerpunkten im Medizin- und Gesundheitsrecht."
+  },
+  {
+    period: "2020–2022",
+    title: "Rechtsreferendar",
+    place: "Oberlandesgericht Stuttgart · Landgericht Stuttgart",
+    text: "Juristischer Vorbereitungsdienst mit Stationen in Zivil- und Strafsachen."
+  },
+  {
+    period: "seit 2018",
+    title: "Lektor",
+    place: "Georg Thieme Verlag",
+    text: "Fachlektorat medizinischer und wissenschaftlicher Publikationen."
+  },
+  {
+    period: "2012–2016",
+    title: "Tutor & wissenschaftliche Mitarbeit",
+    place: "Universitätsklinikum und Universität Tübingen",
+    text: "Pädiatrie, makroskopische Anatomie, Neonatologie und Mentoring internationaler Medizinstudierender."
   }
 ];
 
+const educationMilestones = [
+  {
+    period: "2022",
+    title: "LL.M. Medizinrecht",
+    place: "Dresden International University",
+    text: "Masterarbeit zur rechtlichen Zulässigkeit der Gebärmuttertransplantation."
+  },
+  {
+    period: "2022",
+    title: "Zweites juristisches Staatsexamen",
+    place: "Land Baden-Württemberg",
+    text: "Abschluss der juristischen Ausbildung."
+  },
+  {
+    period: "2019",
+    title: "Dr. med.",
+    place: "Eberhard Karls Universität Tübingen",
+    text: "Dissertation zur Wirkung von HMGB1 auf die Interaktion von Thrombozyten und Monozyten."
+  },
+  {
+    period: "2019",
+    title: "Erstes juristisches Staatsexamen · Diplom-Jurist",
+    place: "Eberhard Karls Universität Tübingen",
+    text: "Abschluss des rechtswissenschaftlichen Studiums."
+  },
+  {
+    period: "2014–2019",
+    title: "Studium der Rechtswissenschaft",
+    place: "Eberhard Karls Universität Tübingen",
+    text: "Doppelstudium parallel zur medizinischen Ausbildung."
+  },
+  {
+    period: "2011–2017",
+    title: "Studium der Humanmedizin",
+    place: "Eberhard Karls Universität Tübingen",
+    text: "Ärztliche Prüfung und Approbation."
+  },
+  {
+    period: "2011",
+    title: "Abitur",
+    place: "Maria-von-Linden-Gymnasium Calw",
+    text: "Ausgangspunkt eines interdisziplinären Bildungswegs."
+  }
+];
+
+const talks = [
+  {
+    year: "2025",
+    title: "Alzheimer-Demenz",
+    place: "Familien- und Seniorenakademie Idstein"
+  },
+  {
+    year: "2025",
+    title: "Krankheitsbilder für die Podologie",
+    place: "Fachfortbildung, Stralsund"
+  },
+  {
+    year: "2025",
+    title: "KI im Gesundheitswesen: Verantwortung und Haftung",
+    place: "8. Stuttgarter Medizinrechtstage"
+  },
+  {
+    year: "2025",
+    title: "Spannungsfeld: rechtlich absichern oder indiziert?",
+    place: "RÖKO, Wiesbaden"
+  },
+  {
+    year: "2024",
+    title: "Demenz, Schutzmaßnahmen und orthopädische Komplikationen",
+    place: "7. Stuttgarter Medizinrechtstage"
+  },
+  {
+    year: "2023–2024",
+    title: "Mental Health",
+    place: "Gymnasium Trossingen"
+  },
+  {
+    year: "2023",
+    title: "Augenheilkunde und Orthopädie",
+    place: "6. Stuttgarter Medizinrechtstage"
+  },
+  {
+    year: "2022",
+    title: "Onkologie und Hernien",
+    place: "5. Stuttgarter Medizinrechtstage"
+  },
+  {
+    year: "2021",
+    title: "Schlaganfall und Herzinfarkt",
+    place: "4. Stuttgarter Medizinrechtstage"
+  }
+];
+
+const episodes = [
+  {
+    number: "02",
+    title: "In dubio pro vita! – Im Zweifel für das Leben",
+    meta: "Patientenverfügung · Selbstbestimmung · Notfallmedizin"
+  },
+  {
+    number: "01",
+    title: "Betäubungsmittel im Klinikalltag",
+    meta: "Human Factors · Verantwortung · Patientensicherheit"
+  },
+  {
+    number: "00",
+    title: "Warum „Recht Medizinisch“?",
+    meta: "Medizin · Pflege · Recht"
+  }
+];
+
+const projects = [
+  {
+    index: "01",
+    meta: "Promotion · Universität Leipzig",
+    title: "Verfassungsrecht & Transplantationsmedizin",
+    text: "Rechtswissenschaftliche Forschung zur verfassungsrechtlichen Tragfähigkeit des § 8 Abs. 1 Satz 2 TPG.",
+    href: "#vita",
+    link: "Mehr zur Vita"
+  },
+  {
+    index: "02",
+    meta: "Arbeitsforschung · ENCW-Gruppe",
+    title: "Die 4-Tage-Woche wissenschaftlich begleiten",
+    text: "Langzeitstudie zu psychologischen, sozialen und arbeitswissenschaftlichen Effekten eines modernen Arbeitszeitmodells.",
+    href: "https://www.encw.de/encw-gruppe-fuehrt-ab-01-oktober-4-tage-woche-ein/",
+    link: "Zum Modell der ENCW-Gruppe"
+  },
+  {
+    index: "03",
+    meta: "Podcast · Recht Medizinisch",
+    title: "Klinikalltag trifft Recht",
+    text: "Mit Florian Schlepple: echte Fälle, nachvollziehbare Einordnung und ein offener Blick auf medizinrechtliche Grauzonen.",
+    href: "https://open.spotify.com/show/7aowMbc68QlEwd0K4x5OT8",
+    link: "Alle Folgen"
+  },
+  {
+    index: "04",
+    meta: "Entrepreneurship · Save Order Safe",
+    title: "Mehr Sport. Weniger Leerstand.",
+    text: "Als Mitgründer und COO entwickle ich eine Plattform, die kurzfristig frei werdende Sportbuchungen wieder verfügbar macht.",
+    href: "https://saveordersafe.com/",
+    link: "Save Order Safe entdecken"
+  }
+];
+
+function PublicationRow({ publication }: { publication: Publication }) {
+  const content = (
+    <>
+      <span className="publication-year">{publication.year}</span>
+      <span className="publication-type">{publication.type}</span>
+      <span className="publication-main">
+        <strong>{publication.title}</strong>
+        <small>{publication.source}</small>
+      </span>
+      {publication.href ? (
+        <span className="publication-arrow">
+          <ArrowUpRight />
+        </span>
+      ) : (
+        <span className="publication-dot" aria-hidden="true" />
+      )}
+    </>
+  );
+
+  return publication.href ? (
+    <a
+      className="publication-row"
+      href={publication.href}
+      target="_blank"
+      rel="noreferrer"
+    >
+      {content}
+    </a>
+  ) : (
+    <article className="publication-row">{content}</article>
+  );
+}
+
 export default function App() {
+  const [showAllPublications, setShowAllPublications] = useState(false);
+  const [showAllCareer, setShowAllCareer] = useState(false);
+  const [showEducation, setShowEducation] = useState(false);
+  const [showAllTalks, setShowAllTalks] = useState(false);
+
+  const visiblePublications = showAllPublications
+    ? publications
+    : publications.slice(0, 4);
+  const visibleCareer = showAllCareer
+    ? careerMilestones
+    : careerMilestones.slice(0, 6);
+  const visibleTalks = showAllTalks ? talks : talks.slice(0, 4);
+
   return (
     <main>
       <header className="site-header">
@@ -116,6 +439,7 @@ export default function App() {
         </a>
         <nav aria-label="Hauptnavigation">
           <a href="#profil">Profil</a>
+          <a href="#projekte">Projekte</a>
           <a href="#publikationen">Publikationen</a>
           <a href="#vita">Vita</a>
         </nav>
@@ -126,44 +450,45 @@ export default function App() {
       </header>
 
       <section className="hero" id="top">
-        <div className="hero-grid" aria-hidden="true" />
+        <div className="hero-shape hero-shape-one" aria-hidden="true" />
+        <div className="hero-shape hero-shape-two" aria-hidden="true" />
         <div className="hero-copy">
           <p className="eyebrow">
             <span />
-            Medizin · Recht · Lehre
+            Medizin · Recht · Lehre · Innovation
           </p>
           <h1>
             Medizin verstehen.
             <br />
             Recht <em>einordnen.</em>
             <br />
-            Wissen vermitteln.
+            Zukunft gestalten.
           </h1>
           <p className="hero-intro">
             Dr. med. Philipp Graef, LL.M. verbindet ärztliche Erfahrung mit
             juristischer Präzision – in Lehre, Forschung, Publikation und
-            öffentlichem Diskurs.
+            unternehmerischer Innovation.
           </p>
           <div className="hero-actions">
-            <a className="button button-dark" href="#profil">
+            <a className="button button-primary" href="#profil">
               Profil entdecken
               <ArrowRight />
             </a>
-            <a
-              className="text-link"
-              href="https://open.spotify.com/show/7aowMbc68QlEwd0K4x5OT8"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Podcast anhören
-              <ArrowUpRight />
+            <a className="text-link" href="#projekte">
+              Aktuelle Projekte
+              <ArrowRight />
             </a>
+          </div>
+          <div className="hero-credentials" aria-label="Qualifikationen">
+            <span>Dr. med.</span>
+            <span>LL.M.</span>
+            <span>Diplom-Jurist</span>
           </div>
         </div>
 
         <div className="hero-visual">
+          <div className="portrait-halo" aria-hidden="true" />
           <div className="portrait-panel">
-            <div className="portrait-accent" aria-hidden="true" />
             <img
               src="/philipp-graef.jpg"
               alt="Dr. med. Philipp Graef"
@@ -171,34 +496,21 @@ export default function App() {
               height={354}
               fetchPriority="high"
             />
-            <div className="portrait-caption">
-              <span>Arzt</span>
-              <span>Rechtsanwalt</span>
-              <span>Hochschullehrer</span>
-            </div>
+          </div>
+          <div className="portrait-caption">
+            <span>Arzt</span>
+            <span>Jurist</span>
+            <span>Hochschullehrer</span>
           </div>
           <div className="hero-note">
-            <span className="note-index">Fokus</span>
-            <p>
-              Wo medizinische Entscheidungen rechtliche Verantwortung
-              berühren.
-            </p>
+            <span>Mein Fokus</span>
+            <p>Wo medizinischer Fortschritt auf Verantwortung trifft.</p>
           </div>
         </div>
 
-        <div className="hero-facts" aria-label="Kurzprofil">
-          <div>
-            <strong>2</strong>
-            <span>Staatsexamina</span>
-          </div>
-          <div>
-            <strong>10+</strong>
-            <span>Jahre Lehre</span>
-          </div>
-          <div>
-            <strong>4</strong>
-            <span>Fachperspektiven</span>
-          </div>
+        <div className="scroll-note" aria-hidden="true">
+          <span />
+          Entdecken
         </div>
       </section>
 
@@ -222,9 +534,8 @@ export default function App() {
             </p>
             <p>
               Mein Ansatz verbindet klinische Realität, juristische Systematik
-              und verständliche Kommunikation. Das Ziel: belastbare
-              Orientierung für Menschen, Institutionen und den fachlichen
-              Diskurs.
+              und verständliche Kommunikation – für belastbare Orientierung in
+              Wissenschaft, Lehre und Praxis.
             </p>
           </div>
         </div>
@@ -239,9 +550,44 @@ export default function App() {
         </div>
       </section>
 
+      <section className="projects section" id="projekte">
+        <div className="section-label light-label">
+          <span>02</span>
+          <p>Aktuelle Projekte</p>
+        </div>
+        <div className="section-heading-row project-heading">
+          <div>
+            <p className="kicker">Was mich gerade bewegt</p>
+            <h2>Ideen mit Wirkung – in Forschung und Praxis.</h2>
+          </div>
+          <p>
+            Von Transplantationsrecht über Arbeitsforschung bis zu Podcast und
+            Sport-Tech.
+          </p>
+        </div>
+        <div className="project-grid">
+          {projects.map((project) => (
+            <article className="project-card" key={project.index}>
+              <span className="project-index">{project.index}</span>
+              <p className="project-meta">{project.meta}</p>
+              <h3>{project.title}</h3>
+              <p>{project.text}</p>
+              <a
+                href={project.href}
+                target={project.href.startsWith("http") ? "_blank" : undefined}
+                rel={project.href.startsWith("http") ? "noreferrer" : undefined}
+              >
+                {project.link}
+                <ArrowUpRight size={16} />
+              </a>
+            </article>
+          ))}
+        </div>
+      </section>
+
       <section className="book section" aria-labelledby="book-title">
         <div className="book-visual">
-          <div className="book-shadow" aria-hidden="true" />
+          <div className="book-backdrop" aria-hidden="true" />
           <img
             src="/buch-gebaermuttertransplantation.webp"
             alt="Buchcover: Die Gebärmuttertransplantation – Medizin, Recht, Ethik"
@@ -249,21 +595,19 @@ export default function App() {
             height={1050}
             loading="lazy"
           />
+          <span className="book-badge">Monografie · 2024</span>
         </div>
         <div className="book-copy">
-          <p className="eyebrow light">
+          <p className="eyebrow">
             <span />
-            Monografie · 2024
+            Medizin · Recht · Ethik
           </p>
-          <h2 id="book-title">
-            Die Gebärmutter&shy;transplantation
-          </h2>
+          <h2 id="book-title">Die Gebärmutter&shy;transplantation</h2>
           <p className="book-subtitle">Medizin – Recht – Ethik</p>
           <p>
-            Das erste umfangreiche deutschsprachige Werk zur
-            Gebärmuttertransplantation untersucht medizinische Grundlagen,
-            rechtliche Zulässigkeit, ethische Dimensionen und gesellschaftliche
-            Folgen dieser innovativen Behandlung.
+            Das Werk untersucht medizinische Grundlagen, rechtliche
+            Zulässigkeit, ethische Dimensionen und gesellschaftliche Folgen
+            dieser innovativen Behandlung.
           </p>
           <dl className="book-meta">
             <div>
@@ -280,7 +624,7 @@ export default function App() {
             </div>
           </dl>
           <a
-            className="button button-light"
+            className="button button-primary"
             href="https://www.verlagdrkovac.de/978-3-339-13992-4.htm"
             target="_blank"
             rel="noreferrer"
@@ -293,47 +637,52 @@ export default function App() {
 
       <section className="publications section" id="publikationen">
         <div className="section-label">
-          <span>02</span>
+          <span>03</span>
           <p>Publikationen</p>
         </div>
         <div className="section-heading-row">
           <div>
-            <p className="kicker">Ausgewählte Arbeiten</p>
-            <h2>Forschung, die Grenzen überschreitet.</h2>
+            <p className="kicker">Medizin & Recht</p>
+            <h2>Forschung, die Fachgrenzen überschreitet.</h2>
           </div>
           <p>
-            Beiträge aus Medizinrecht, Transplantationsrecht,
-            Wettbewerbsrecht und klinischer Praxis.
+            Zwölf Beiträge aus Medizinrecht, Transplantationsrecht,
+            Wettbewerbsrecht und klinischer Praxis – ergänzt durch die
+            Monografie.
           </p>
         </div>
-        <div className="publication-list">
-          {publications.map((publication) => (
-            <a
-              className="publication-row"
-              href={publication.href}
-              target="_blank"
-              rel="noreferrer"
+        <div className="publication-list" id="publication-list">
+          {visiblePublications.map((publication) => (
+            <PublicationRow
+              publication={publication}
               key={publication.title}
-            >
-              <span className="publication-year">{publication.year}</span>
-              <span className="publication-type">{publication.type}</span>
-              <span className="publication-main">
-                <strong>{publication.title}</strong>
-                <small>{publication.source}</small>
-              </span>
-              <span className="publication-arrow">
-                <ArrowUpRight />
-              </span>
-            </a>
+            />
           ))}
         </div>
+        <button
+          className="reveal-button"
+          type="button"
+          aria-expanded={showAllPublications}
+          aria-controls="publication-list"
+          onClick={() => setShowAllPublications((current) => !current)}
+        >
+          {showAllPublications
+            ? "Auswahl anzeigen"
+            : `Alle Publikationen (${publications.length})`}
+          <Plus open={showAllPublications} />
+        </button>
       </section>
 
       <section className="podcast section" aria-labelledby="podcast-title">
-        <div className="podcast-signal" aria-hidden="true">
-          {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((bar) => (
-            <span key={bar} />
-          ))}
+        <div className="podcast-art">
+          <div className="podcast-blob" aria-hidden="true" />
+          <img
+            src="/recht-medizinisch-cover.jpg"
+            alt="Logo des Podcasts Recht Medizinisch"
+            width={640}
+            height={640}
+            loading="lazy"
+          />
         </div>
         <div className="podcast-copy">
           <p className="eyebrow light">
@@ -354,45 +703,43 @@ export default function App() {
             target="_blank"
             rel="noreferrer"
           >
-            Auf Spotify hören
+            Alle Folgen auf Spotify
             <ArrowUpRight />
           </a>
         </div>
         <div className="podcast-episodes">
-          <div>
-            <span>02</span>
-            <p>In dubio pro vita! – Im Zweifel für das Leben</p>
-            <small>Patientenverfügung · Selbstbestimmung · Notfallmedizin</small>
-          </div>
-          <div>
-            <span>01</span>
-            <p>Betäubungsmittel im Klinikalltag</p>
-            <small>Human Factors · Verantwortung · Patientensicherheit</small>
-          </div>
-          <div>
-            <span>00</span>
-            <p>Warum „Recht Medizinisch“?</p>
-            <small>Medizin · Pflege · Recht</small>
-          </div>
+          {episodes.map((episode) => (
+            <article key={episode.number}>
+              <span>{episode.number}</span>
+              <div>
+                <p>{episode.title}</p>
+                <small>{episode.meta}</small>
+              </div>
+            </article>
+          ))}
         </div>
       </section>
 
       <section className="vita section" id="vita">
         <div className="section-label">
-          <span>03</span>
+          <span>04</span>
           <p>Vita</p>
         </div>
         <div className="vita-layout">
           <div className="vita-intro">
-            <p className="kicker">Ausgewählte Stationen</p>
+            <p className="kicker">Berufliche Stationen</p>
             <h2>Zwei Disziplinen. Ein Blick fürs Ganze.</h2>
             <p>
-              Ärztliche Praxis, juristische Ausbildung und akademische Lehre
-              bilden die Grundlage meiner interdisziplinären Arbeit.
+              Ärztliche Praxis, juristische Ausbildung, akademische Lehre und
+              Unternehmertum bilden die Grundlage meiner Arbeit.
             </p>
+            <div className="vita-stat">
+              <strong>{careerMilestones.length}</strong>
+              <span>berufliche und wissenschaftliche Stationen</span>
+            </div>
           </div>
-          <div className="timeline">
-            {milestones.map((milestone) => (
+          <div className="timeline" id="career-timeline">
+            {visibleCareer.map((milestone) => (
               <article key={milestone.period + milestone.title}>
                 <span className="timeline-period">{milestone.period}</span>
                 <div>
@@ -402,63 +749,119 @@ export default function App() {
                 </div>
               </article>
             ))}
+            <button
+              className="reveal-button timeline-button"
+              type="button"
+              aria-expanded={showAllCareer}
+              aria-controls="career-timeline"
+              onClick={() => setShowAllCareer((current) => !current)}
+            >
+              {showAllCareer ? "Weniger Stationen" : "Alle Stationen"}
+              <Plus open={showAllCareer} />
+            </button>
           </div>
+        </div>
+
+        <div className="education-panel">
+          <button
+            type="button"
+            aria-expanded={showEducation}
+            aria-controls="education-list"
+            onClick={() => setShowEducation((current) => !current)}
+          >
+            <span>
+              <small>Ausbildung & Abschlüsse</small>
+              Der Weg durch Medizin und Recht
+            </span>
+            <Plus open={showEducation} />
+          </button>
+          {showEducation && (
+            <div className="education-list" id="education-list">
+              {educationMilestones.map((milestone) => (
+                <article key={milestone.period + milestone.title}>
+                  <span>{milestone.period}</span>
+                  <div>
+                    <h3>{milestone.title}</h3>
+                    <p className="timeline-place">{milestone.place}</p>
+                    <p>{milestone.text}</p>
+                  </div>
+                </article>
+              ))}
+            </div>
+          )}
         </div>
       </section>
 
-      <section className="engagement section">
-        <div className="engagement-title">
-          <p className="kicker">Weitere Tätigkeiten</p>
-          <h2>Wissenschaft in Bewegung.</h2>
+      <section className="talks section" id="vortraege">
+        <div className="section-heading-row">
+          <div>
+            <p className="kicker">Vorträge & Impulse</p>
+            <h2>Wissen wird wertvoll, wenn es Menschen erreicht.</h2>
+          </div>
+          <p>
+            Medizinische, medizinrechtliche und gesellschaftliche Themen für
+            Fachpublikum, Gesundheitsberufe und Öffentlichkeit.
+          </p>
         </div>
-        <div className="engagement-grid">
+        <div className="talk-grid" id="talk-list">
+          {visibleTalks.map((talk) => (
+            <article key={talk.year + talk.title}>
+              <span>{talk.year}</span>
+              <h3>{talk.title}</h3>
+              <p>{talk.place}</p>
+            </article>
+          ))}
+        </div>
+        <button
+          className="reveal-button"
+          type="button"
+          aria-expanded={showAllTalks}
+          aria-controls="talk-list"
+          onClick={() => setShowAllTalks((current) => !current)}
+        >
+          {showAllTalks ? "Auswahl anzeigen" : `Alle Vorträge (${talks.length})`}
+          <Plus open={showAllTalks} />
+        </button>
+      </section>
+
+      <section className="facets section" aria-labelledby="facets-title">
+        <div className="facets-intro">
+          <p className="kicker">Weitere Facetten</p>
+          <h2 id="facets-title">Neugier, Ausdauer und Verbundenheit.</h2>
+        </div>
+        <div className="facet-grid">
           <article>
-            <span>Gutachter</span>
-            <h3>Deutsche Medizinische Wochenschrift</h3>
+            <span className="facet-icon">✦</span>
+            <h3>Auszeichnungen</h3>
             <p>
-              Fachbegutachtung medizinischer und medizinrechtlicher
-              Publikationen.
+              Gewinner des VGH Moot Courts Baden-Württemberg 2018; Erfolge bei
+              Jugend forscht sowie in der Internationalen Chemie- und
+              Biologie-Olympiade.
             </p>
-            <a
-              href="https://www.thieme-connect.de/products/ejournals/abstract/10.1055/a-2722-8340"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Nachweis 2025 <ArrowUpRight size={16} />
-            </a>
           </article>
           <article>
-            <span>Referent</span>
-            <h3>Medizinrecht & KI</h3>
+            <span className="facet-icon">○</span>
+            <h3>Fachgesellschaften</h3>
             <p>
-              Vorträge zu Haftung, klinischer Verantwortung und Künstlicher
-              Intelligenz im Gesundheitswesen.
+              Mitglied der Deutschen Gesellschaft für Allgemein- und
+              Viszeralchirurgie, der Transplantation Society sowie des
+              Marburger Bundes.
             </p>
-            <a
-              href="https://seminare.rak-fortbildungsinstitut.de/seminare/anwaltsseminare/82-250716-s-fa-medizinrecht-tag-1-arzthaftungsrecht-die-feststellung-der-kausalitaet-im-arzhaftungsprozess-ki-im-gesundheitswesen-7-5-fao-stunden-9673124/"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Stuttgarter Medizinrechtstage <ArrowUpRight size={16} />
-            </a>
           </article>
           <article>
-            <span>Forschung</span>
-            <h3>Neue Arbeitsmodelle</h3>
+            <span className="facet-icon">≈</span>
+            <h3>Sprachen</h3>
             <p>
-              Projektleitung einer Langzeitstudie zu psychologischen und
-              arbeitswissenschaftlichen Effekten der 4-Tage-Woche.
+              Deutsch als Muttersprache, Englisch und Spanisch auf
+              verhandlungssicherem Niveau sowie gute Französischkenntnisse.
             </p>
           </article>
         </div>
       </section>
 
       <section className="contact section" id="kontakt">
-        <div className="contact-orbit" aria-hidden="true">
-          <span />
-          <span />
-          <span />
-        </div>
+        <div className="contact-shape contact-shape-one" aria-hidden="true" />
+        <div className="contact-shape contact-shape-two" aria-hidden="true" />
         <p className="eyebrow light">
           <span />
           Kontakt
@@ -469,13 +872,10 @@ export default function App() {
           ins Gespräch <em>kommen.</em>
         </h2>
         <p>
-          Für Vorträge, Lehre, Publikationen und interdisziplinären
+          Für Vorträge, Lehre, Publikationen, Projekte und interdisziplinären
           wissenschaftlichen Austausch.
         </p>
-        <a
-          className="contact-mail"
-          href="mailto:graef.philipp@googlemail.com"
-        >
+        <a className="contact-mail" href="mailto:graef.philipp@googlemail.com">
           graef.philipp@googlemail.com
           <ArrowUpRight size={28} />
         </a>
@@ -487,7 +887,7 @@ export default function App() {
           <p>
             Dr. med. Philipp Graef, LL.M.
             <br />
-            Medizin · Recht · Lehre
+            Medizin · Recht · Lehre · Innovation
           </p>
         </div>
         <p className="footer-note">
