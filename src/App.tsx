@@ -531,10 +531,11 @@ export default function App() {
           <div className="portrait-halo" aria-hidden="true" />
           <div className="portrait-panel">
             <img
-              src="/philipp-graef.jpg"
+              src="/philipp-graef-hd.webp"
               alt="Dr. med. Philipp Graef"
-              width={281}
-              height={354}
+              width={1116}
+              height={1409}
+              decoding="async"
               fetchPriority="high"
             />
           </div>
