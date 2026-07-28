@@ -35,6 +35,7 @@ for (const match of [
 
 const publicAssets = [
   "/philipp-graef-hd.webp",
+  "/save-order-safe-logo.webp",
   "/buch-gebaermuttertransplantation.webp",
   "/recht-medizinisch-cover.jpg",
   "/favicon.svg",

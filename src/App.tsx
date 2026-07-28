@@ -666,6 +666,22 @@ export default function App() {
             </h2>
           </div>
           <div className="venture-intro">
+            <a
+              className="venture-logo"
+              href="https://saveordersafe.com/"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Save Order Safe – Unternehmenswebsite öffnen"
+            >
+              <img
+                src="/save-order-safe-logo.webp"
+                alt="Save Order Safe"
+                width={868}
+                height={762}
+                loading="lazy"
+                decoding="async"
+              />
+            </a>
             <p>
               Save Order Safe verbindet Sportler:innen, Vereine und
               Freizeitanlagen in einem digitalen Ökosystem: kurzfristige
