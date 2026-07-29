@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { LegalPage } from "./LegalPages";
 
 const ArrowUpRight = ({ size = 18 }: { size?: number }) => (
   <svg
@@ -459,6 +460,14 @@ export default function App() {
   const [showAllCareer, setShowAllCareer] = useState(false);
   const [showEducation, setShowEducation] = useState(false);
   const [showAllTalks, setShowAllTalks] = useState(false);
+
+  const legalPath = window.location.pathname.replace(/\/+$/, "") || "/";
+  if (legalPath === "/impressum") {
+    return <LegalPage kind="impressum" />;
+  }
+  if (legalPath === "/datenschutz") {
+    return <LegalPage kind="datenschutz" />;
+  }
 
   const visiblePublications = showAllPublications
     ? publications
@@ -1017,10 +1026,10 @@ export default function App() {
         </a>
         <div className="contact-signature">
           <img
-            src="/philipp-graef-signature.png"
+            src="/philipp-graef-signature.webp"
             alt="Handschriftliche Signatur von Philipp Graef"
-            width={696}
-            height={244}
+            width={803}
+            height={509}
             loading="lazy"
             decoding="async"
           />
@@ -1042,7 +1051,11 @@ export default function App() {
           oder rechtliche Beratung im Einzelfall.
         </p>
         <div className="footer-links">
-          <a href="#top">Nach oben ↑</a>
+          <div className="footer-legal">
+            <a href="/impressum">Impressum</a>
+            <a href="/datenschutz">Datenschutz</a>
+            <a href="#top">Nach oben ↑</a>
+          </div>
           <span>© {new Date().getFullYear()} Philipp Graef</span>
         </div>
       </footer>
