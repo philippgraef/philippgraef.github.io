@@ -1873,6 +1873,33 @@ a.publication-row:hover .publication-main small {
   color: var(--rose-bright);
 }
 
+.contact-signature {
+  display: grid;
+  width: min(100%, 720px);
+  margin-top: 34px;
+  justify-items: end;
+}
+
+.contact-signature img {
+  display: block;
+  width: min(245px, 62vw);
+  height: auto;
+  margin-right: 8px;
+  opacity: 0.9;
+  transform: rotate(-3deg);
+}
+
+.contact-signature span {
+  margin-top: -8px;
+  padding-top: 9px;
+  border-top: 1px solid rgba(255, 220, 231, 0.3);
+  color: rgba(255, 234, 241, 0.7);
+  font-size: 9px;
+  font-weight: 750;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
 footer {
   display: grid;
   grid-template-columns: 1fr 1fr auto;
@@ -2378,6 +2405,14 @@ footer {
 
   .contact-mail {
     font-size: 17px;
+  }
+
+  .contact-signature {
+    justify-items: start;
+  }
+
+  .contact-signature img {
+    margin-right: 0;
   }
 
   footer {

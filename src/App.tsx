@@ -1015,6 +1015,17 @@ export default function App() {
           graef.philipp@googlemail.com
           <ArrowUpRight size={28} />
         </a>
+        <div className="contact-signature">
+          <img
+            src="/philipp-graef-signature.png"
+            alt="Handschriftliche Signatur von Philipp Graef"
+            width={696}
+            height={244}
+            loading="lazy"
+            decoding="async"
+          />
+          <span>Dr. med. Philipp Graef · Ass. iur.</span>
+        </div>
       </section>
 
       <footer>

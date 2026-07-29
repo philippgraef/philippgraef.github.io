@@ -6,6 +6,7 @@ const dist = resolve(root, "dist");
 
 const mimeTypes = {
   ".jpg": "image/jpeg",
+  ".png": "image/png",
   ".svg": "image/svg+xml; charset=utf-8",
   ".txt": "text/plain; charset=utf-8",
   ".webp": "image/webp"
@@ -35,6 +36,7 @@ for (const match of [
 
 const publicAssets = [
   "/philipp-graef-hd.webp",
+  "/philipp-graef-signature.png",
   "/save-order-safe-logo.webp",
   "/buch-gebaermuttertransplantation.webp",
   "/recht-medizinisch-cover.jpg",
