@@ -176,7 +176,7 @@ const Impressum = () => (
   </>
 );
 
-const Datenschutz = () => (
+const Datenschutz = ({ isGitHubPages }: { isGitHubPages: boolean }) => (
   <>
     <section className="legal-hero">
       <p className="eyebrow">
@@ -224,15 +224,30 @@ const Datenschutz = () => (
       <section className="legal-card legal-card-wide">
         <span className="legal-number">03</span>
         <p className="legal-kicker">Hosting</p>
-        <h2>ChatGPT Sites</h2>
-        <p>
-          Diese Website wird über ChatGPT Sites bereitgestellt. OpenAI Ireland
-          Limited, 1st Floor, The Liffey Trust Centre, 117–126 Sheriff Street
-          Upper, Dublin 1, D01 YC43, Irland, verarbeitet dabei Hosting-Daten im
-          Auftrag des Verantwortlichen. Hierzu können insbesondere IP-Adresse,
-          Datum und Uhrzeit des Abrufs, aufgerufene Adresse, Geräte- und
-          Browserinformationen sowie Protokoll- und Nutzungsdaten gehören.
-        </p>
+        <h2>{isGitHubPages ? "GitHub Pages" : "ChatGPT Sites"}</h2>
+        {isGitHubPages ? (
+          <p>
+            Diese Website wird über GitHub Pages bereitgestellt. Für Nutzer im
+            Europäischen Wirtschaftsraum ist GitHub B.V., Prins Bernhardplein
+            200, 1097 JB Amsterdam, Niederlande, ein Ansprechpartner des
+            Plattformdienstes; GitHub, Inc. hat seinen Sitz in 88 Colin P.
+            Kelly Jr. Street, San Francisco, CA 94107, USA. Beim Abruf einer
+            GitHub-Pages-Website wird die IP-Adresse nach Angaben von GitHub
+            unabhängig von einer Anmeldung zu Sicherheitszwecken protokolliert
+            und gespeichert. Darüber hinaus können Datum und Uhrzeit,
+            aufgerufene Adresse, Referrer sowie Geräte- und Browserdaten
+            verarbeitet werden.
+          </p>
+        ) : (
+          <p>
+            Diese Website wird über ChatGPT Sites bereitgestellt. OpenAI Ireland
+            Limited, 1st Floor, The Liffey Trust Centre, 117–126 Sheriff Street
+            Upper, Dublin 1, D01 YC43, Irland, verarbeitet dabei Hosting-Daten im
+            Auftrag des Verantwortlichen. Hierzu können insbesondere IP-Adresse,
+            Datum und Uhrzeit des Abrufs, aufgerufene Adresse, Geräte- und
+            Browserinformationen sowie Protokoll- und Nutzungsdaten gehören.
+          </p>
+        )}
         <p>
           Zweck ist die sichere, stabile und fehlerfreie Auslieferung der
           Website sowie die Abwehr missbräuchlicher Zugriffe. Rechtsgrundlage
@@ -240,30 +255,56 @@ const Datenschutz = () => (
           sicheren und funktionsfähigen Betrieb dieses Internetangebots.
         </p>
         <div className="legal-link-list">
-          <ExternalLink href="https://openai.com/policies/chatgpt-sites-data-processing-addendum/">
-            Auftragsverarbeitung für ChatGPT Sites
-          </ExternalLink>
-          <ExternalLink href="https://openai.com/policies/chatgpt-sites-terms/">
-            Nutzungsbedingungen für ChatGPT Sites
-          </ExternalLink>
-          <ExternalLink href="https://openai.com/policies/sub-processor-list/">
-            Unterauftragsverarbeiter
-          </ExternalLink>
+          {isGitHubPages ? (
+            <>
+              <ExternalLink href="https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages#data-collection">
+                Datenverarbeitung bei GitHub Pages
+              </ExternalLink>
+              <ExternalLink href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">
+                Datenschutzerklärung von GitHub
+              </ExternalLink>
+              <ExternalLink href="https://docs.github.com/en/site-policy/privacy-policies/github-subprocessors">
+                Unterauftragsverarbeiter von GitHub
+              </ExternalLink>
+            </>
+          ) : (
+            <>
+              <ExternalLink href="https://openai.com/policies/chatgpt-sites-data-processing-addendum/">
+                Auftragsverarbeitung für ChatGPT Sites
+              </ExternalLink>
+              <ExternalLink href="https://openai.com/policies/chatgpt-sites-terms/">
+                Nutzungsbedingungen für ChatGPT Sites
+              </ExternalLink>
+              <ExternalLink href="https://openai.com/policies/sub-processor-list/">
+                Unterauftragsverarbeiter
+              </ExternalLink>
+            </>
+          )}
         </div>
       </section>
 
       <section className="legal-card">
         <span className="legal-number">04</span>
-        <p className="legal-kicker">Zugriffsschutz</p>
-        <h2>Sign in with ChatGPT</h2>
-        <p>
-          Solange die Website zugriffsbeschränkt ist, verarbeitet die
-          Hosting-Plattform Authentifizierungsdaten, um die Zugriffsberechtigung
-          zu prüfen. Die Website selbst führt kein eigenes Nutzerkonto und
-          speichert keine eigenen Login-Profile. Rechtsgrundlage ist Art. 6
-          Abs. 1 lit. f DSGVO; das berechtigte Interesse liegt im Schutz
-          nichtöffentlich bereitgestellter Inhalte.
+        <p className="legal-kicker">
+          {isGitHubPages ? "Öffentlicher Zugriff" : "Zugriffsschutz"}
         </p>
+        <h2>{isGitHubPages ? "Keine Anmeldung" : "Sign in with ChatGPT"}</h2>
+        {isGitHubPages ? (
+          <p>
+            Die über GitHub Pages bereitgestellte Website ist öffentlich
+            erreichbar. Sie führt kein eigenes Nutzerkonto, verlangt keine
+            Anmeldung und speichert keine eigenen Login-Profile.
+          </p>
+        ) : (
+          <p>
+            Solange die Website zugriffsbeschränkt ist, verarbeitet die
+            Hosting-Plattform Authentifizierungsdaten, um die Zugriffsberechtigung
+            zu prüfen. Die Website selbst führt kein eigenes Nutzerkonto und
+            speichert keine eigenen Login-Profile. Rechtsgrundlage ist Art. 6
+            Abs. 1 lit. f DSGVO; das berechtigte Interesse liegt im Schutz
+            nichtöffentlich bereitgestellter Inhalte.
+          </p>
+        )}
       </section>
 
       <section className="legal-card">
@@ -292,8 +333,14 @@ const Datenschutz = () => (
           einsetzen. Soweit diese unbedingt erforderlich sind, erfolgt die
           Speicherung auf Grundlage von § 25 Abs. 2 Nr. 2 TDDDG.
         </p>
-        <ExternalLink href="https://openai.com/policies/cookie-policy/">
-          Cookie-Hinweise von OpenAI
+        <ExternalLink
+          href={
+            isGitHubPages
+              ? "https://docs.github.com/en/site-policy/privacy-policies/github-cookies"
+              : "https://openai.com/policies/cookie-policy/"
+          }
+        >
+          Cookie-Hinweise von {isGitHubPages ? "GitHub" : "OpenAI"}
         </ExternalLink>
       </section>
 
@@ -314,11 +361,9 @@ const Datenschutz = () => (
         <p className="legal-kicker">Drittstaaten</p>
         <h2>Internationale Übermittlungen</h2>
         <p>
-          OpenAI kann Unterauftragsverarbeiter auch außerhalb des Europäischen
-          Wirtschaftsraums einsetzen. Nach dem ChatGPT-Sites-Vertrag erfolgen
-          Übermittlungen von EWR-Daten auf Grundlage eines
-          Angemessenheitsbeschlusses oder der Standardvertragsklauseln der
-          Europäischen Kommission.
+          {isGitHubPages
+            ? "GitHub kann Daten auch in den USA und weiteren Staaten verarbeiten oder durch Unterauftragsverarbeiter verarbeiten lassen. GitHub beschreibt internationale Übermittlungen und die hierfür eingesetzten Garantien in seiner Datenschutzerklärung."
+            : "OpenAI kann Unterauftragsverarbeiter auch außerhalb des Europäischen Wirtschaftsraums einsetzen. Nach dem ChatGPT-Sites-Vertrag erfolgen Übermittlungen von EWR-Daten auf Grundlage eines Angemessenheitsbeschlusses oder der Standardvertragsklauseln der Europäischen Kommission."}
         </p>
       </section>
 
@@ -329,10 +374,10 @@ const Datenschutz = () => (
         <p>
           Daten werden nur so lange verarbeitet, wie dies für den jeweiligen
           Zweck erforderlich ist. Technische Hosting-Daten richten sich nach
-          den Sicherheits- und Löschfristen der Plattform. Nach Beendigung der
-          Hosting-Leistung werden Hosted Data nach Maßgabe des
-          ChatGPT-Sites-Vertrags gelöscht oder zurückgegeben, soweit keine
-          gesetzlichen Pflichten eine weitere Speicherung verlangen.
+          den Sicherheits- und Löschfristen der Plattform.
+          {isGitHubPages
+            ? " GitHub beschreibt die Speicherdauer nach den jeweiligen Verarbeitungszwecken, rechtlichen Pflichten sowie Sicherheits- und Missbrauchsschutzinteressen."
+            : " Nach Beendigung der Hosting-Leistung werden Hosted Data nach Maßgabe des ChatGPT-Sites-Vertrags gelöscht oder zurückgegeben, soweit keine gesetzlichen Pflichten eine weitere Speicherung verlangen."}
         </p>
       </section>
 
@@ -374,6 +419,10 @@ const Datenschutz = () => (
 );
 
 export function LegalPage({ kind }: { kind: LegalPageKind }) {
+  const isGitHubPages = window.location.hostname
+    .toLowerCase()
+    .endsWith(".github.io");
+
   useEffect(() => {
     const previousTitle = document.title;
     document.title =
@@ -400,11 +449,15 @@ export function LegalPage({ kind }: { kind: LegalPageKind }) {
       </header>
 
       <main className="legal-main">
-        {kind === "impressum" ? <Impressum /> : <Datenschutz />}
+        {kind === "impressum" ? (
+          <Impressum />
+        ) : (
+          <Datenschutz isGitHubPages={isGitHubPages} />
+        )}
       </main>
 
       <div className="legal-footer">
-        <p>Stand: 29. Juli 2026</p>
+        <p>Stand: 26. August 2026</p>
         <nav aria-label="Rechtliche Navigation">
           <a href="/impressum">Impressum</a>
           <a href="/datenschutz">Datenschutz</a>
