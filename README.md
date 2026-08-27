@@ -1,9 +1,9 @@
 # Philipp Graef — persönliche Homepage
 
-Professioneller One-Page-Auftritt für Dr. med. Philipp Graef, LL.M. an der
-Schnittstelle von Medizin, Recht, Lehre und Wissenschaft. Vite erzeugt eine
-kompakte statische Ausgabe; ein Cloudflare-kompatibler Worker liefert HTML,
-Styles, Skript und Bilder ohne zusätzliche Server-Abhängigkeiten aus.
+Professioneller Webauftritt für Dr. med. Philipp Graef, Ass. iur., LL.M. an der
+Schnittstelle von Medizin, Recht, Lehre, Wissenschaft und Innovation. Die
+React-Anwendung wird mit Vite als statische Website gebaut und über GitHub
+Pages veröffentlicht.
 
 ## Lokal starten
 
@@ -14,9 +14,14 @@ pnpm dev
 
 Danach ist die Seite unter der von Vite ausgegebenen lokalen Adresse erreichbar.
 
+Der Produktions-Build für GitHub Pages wird mit `pnpm run build:github`
+erzeugt. Veröffentlichungen des `main`-Branches erfolgen automatisch über den
+Workflow in `.github/workflows/deploy-pages.yml`.
+
 ## Datenschutz bei der Inhaltsauswahl
 
-Aus den Lebensläufen wurden nur berufsbezogene Angaben übernommen. Geburtsdatum,
-Privatanschrift, Telefonnummer, Familienstand, Noten und Unterschrift sind nicht
-Bestandteil der Website. Die Kontakt-E-Mail-Adresse ist enthalten; die erste
-Veröffentlichung erfolgt mit zugriffsbeschränkter Sichtbarkeit.
+Die Website enthält neben berufsbezogenen Angaben auch die vom Betreiber
+ausdrücklich zur Veröffentlichung freigegebenen Kontakt- und Impressumsdaten,
+ein Porträt sowie eine stilisierte Fassung seiner Unterschrift. Die zugrunde
+liegenden CV-Dokumente und sonstige lokale Arbeitsunterlagen sind nicht Teil
+dieses Repositorys.
