@@ -1,0 +1,18 @@
+# Website build output
+node_modules/
+.pnpm-store/
+.next/
+dist/
+out/
+*.log
+*.tsbuildinfo
+~*.tmp
+.DS_Store
+
+# Local dissertation/research material is not part of the website repository
+work/
+outputs/
+Literaturergänzungen/
+*.docx
+*.docm
+*.pdf
