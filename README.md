@@ -1,6 +1,6 @@
 # Philipp Graef — persönliche Homepage
 
-Professioneller Webauftritt für Dr. med. Philipp Graef, Ass. iur., LL.M. an der
+Professioneller Webauftritt für Dr. med. Ass. iur. Philipp Graef, LL.M. (Medizinrecht) an der
 Schnittstelle von Medizin, Recht, Lehre, Wissenschaft und Innovation. Die
 React-Anwendung wird mit Vite als statische Website gebaut und über GitHub
 Pages veröffentlicht.

@@ -36,7 +36,6 @@ for (const match of [
 
 const publicAssets = [
   "/philipp-graef-hd.webp",
-  "/philipp-graef-signature.webp",
   "/save-order-safe-logo.webp",
   "/buch-gebaermuttertransplantation.webp",
   "/die-leisen-abstaende-cover.jpg",

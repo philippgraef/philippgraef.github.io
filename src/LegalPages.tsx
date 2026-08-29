@@ -51,7 +51,7 @@ const Impressum = () => (
       <section className="legal-card legal-card-accent">
         <span className="legal-number">01</span>
         <p className="legal-kicker">Diensteanbieter</p>
-        <h2>Dr. med. Philipp Graef, Ass. iur., LL.M.</h2>
+        <h2>Dr. med. Ass. iur. Philipp Graef, LL.M. (Medizinrecht)</h2>
         <address>
           Holzbronner Str. 55
           <br />
@@ -72,7 +72,8 @@ const Impressum = () => (
         <p className="legal-kicker">Verantwortung</p>
         <h2>Inhaltlich verantwortlich</h2>
         <p>
-          Dr. med. Philipp Graef, Anschrift wie vorstehend. Dies gilt auch für
+          Dr. med. Ass. iur. Philipp Graef, LL.M. (Medizinrecht), Anschrift wie
+          vorstehend. Dies gilt auch für
           journalistisch-redaktionelle Inhalte im Sinne des § 18 Abs. 2 MStV,
           soweit die Vorschrift auf einzelne Inhalte dieses Angebots Anwendung
           findet.
@@ -153,8 +154,8 @@ const Impressum = () => (
         <p className="legal-kicker">Juristische Qualifikation</p>
         <h2>Ass. iur. · Volljurist</h2>
         <p>
-          Die Bezeichnungen Ass. iur., Volljurist und Diplom-Jurist
-          dokumentieren juristische Qualifikationen. Dieses Angebot bezeichnet
+          Die Bezeichnungen Ass. iur. und Volljurist dokumentieren den Abschluss
+          beider juristischer Staatsexamina. Dieses Angebot bezeichnet
           den Diensteanbieter nicht als Rechtsanwalt und bietet keine
           anwaltliche Tätigkeit an. Die BRAO und BORA werden deshalb nicht als
           Berufsordnungen dieses Internetangebots ausgewiesen.
@@ -194,7 +195,7 @@ const Datenschutz = ({ isGitHubPages }: { isGitHubPages: boolean }) => (
       <section className="legal-card legal-card-accent">
         <span className="legal-number">01</span>
         <p className="legal-kicker">Verantwortlicher</p>
-        <h2>Dr. med. Philipp Graef, Ass. iur., LL.M.</h2>
+        <h2>Dr. med. Ass. iur. Philipp Graef, LL.M. (Medizinrecht)</h2>
         <address>
           Holzbronner Str. 55
           <br />
@@ -427,8 +428,8 @@ export function LegalPage({ kind }: { kind: LegalPageKind }) {
     const previousTitle = document.title;
     document.title =
       kind === "impressum"
-        ? "Impressum · Philipp Graef"
-        : "Datenschutz · Philipp Graef";
+        ? "Impressum · Dr. med. Ass. iur. Philipp Graef, LL.M. (Medizinrecht)"
+        : "Datenschutz · Dr. med. Ass. iur. Philipp Graef, LL.M. (Medizinrecht)";
 
     return () => {
       document.title = previousTitle;
@@ -439,8 +440,8 @@ export function LegalPage({ kind }: { kind: LegalPageKind }) {
     <div className="legal-page" id="top">
       <header className="legal-header">
         <a className="legal-brand" href="/" aria-label="Zur Startseite">
-          <span className="brand-mark">PG</span>
-          <span>Philipp Graef</span>
+          <img className="brand-mark" src="/favicon.svg" alt="" />
+          <span>Dr. med. Ass. iur. Philipp Graef, LL.M. (Medizinrecht)</span>
         </a>
         <a className="legal-back" href="/">
           Zur Website
@@ -457,7 +458,7 @@ export function LegalPage({ kind }: { kind: LegalPageKind }) {
       </main>
 
       <div className="legal-footer">
-        <p>Stand: 26. August 2026</p>
+        <p>Stand: 29. August 2026</p>
         <nav aria-label="Rechtliche Navigation">
           <a href="/impressum">Impressum</a>
           <a href="/datenschutz">Datenschutz</a>

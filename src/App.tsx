@@ -58,65 +58,75 @@ const publications: Publication[] = [
     year: "2023",
     type: "Transplantationsrecht",
     title: "Ist die Gebärmuttertransplantation in Deutschland zulässig?",
-    source: "Recht und Politik im Gesundheitswesen"
+    source: "Recht und Politik im Gesundheitswesen",
+    href: "https://www.verlagdrkovac.de/978-3-339-13992-4.htm"
   },
   {
     year: "2022",
     type: "Chirurgie",
     title: "Sleeve gastrectomy – a boon and a bane?!",
-    source: "99. Jahrestagung der Vereinigung der Bayerischen Chirurgie"
+    source: "99. Jahrestagung der Vereinigung der Bayerischen Chirurgie",
+    href: "https://vbc-jahrestagung.de/wp-content/uploads/2022/09/Metabolische-Chirurgie.pdf"
   },
   {
     year: "2021",
     type: "Chirurgie",
     title:
       "Rektumperforation mit Eviszeration des Intestinums bei externem Rektumprolaps",
-    source: "Mittelrheiner Chirurgenkongress, Böblingen"
+    source: "Mittelrheiner Chirurgenkongress, Böblingen",
+    href: "https://der-mittelrheiner.de/wp-content/uploads/2021/09/MRC21_Hauptprogramm_web_final.pdf"
   },
   {
     year: "2021",
     type: "Chirurgie",
     title:
       "Die Perinealhernie als seltene Komplikation nach extralevatorischer abdominoperinealer Rektumexstirpation",
-    source: "Mittelrheiner Chirurgenkongress, Böblingen"
+    source: "Mittelrheiner Chirurgenkongress, Böblingen",
+    href: "https://der-mittelrheiner.de/wp-content/uploads/2021/09/MRC21_Hauptprogramm_web_final.pdf"
   },
   {
     year: "2021",
     type: "Chirurgie",
     title: "The “skinny” old lady hernia",
-    source: "Kongress Viszeralmedizin, Leipzig"
+    source: "Kongress Viszeralmedizin, Leipzig",
+    href: "https://doi.org/10.1055/s-0041-1734109"
   },
   {
     year: "2021",
     type: "Wettbewerbsrecht",
     title:
       "Die Fortwirkungen des Skanska-Urteils: Sind dessen Grundsätze zur Passivlegitimation auf die Aktivlegitimation übertragbar?",
-    source: "WRP 2021, S. 880–885"
+    source: "WRP 2021, S. 880–885",
+    href: "https://enders.info/wp-content/uploads/2021/07/WRP_07_21_Beitrag_Enders.pdf"
   },
   {
     year: "2021",
     type: "Pharmarecht",
     title: "Ist Zugabenwerbung für Arzneimittel in Deutschland zulässig?",
-    source: "PharmR 2021"
+    source: "PharmR 2021",
+    href: "https://scholar.google.com/scholar?q=%22Ist+Zugabenwerbung+f%C3%BCr+Arzneimittel+in+Deutschland+zul%C3%A4ssig%3F%22"
   },
   {
     year: "2020",
     type: "Transplantationsrecht",
     title: "Ist die (empfänger-)gerichtete Totenspende in Deutschland zulässig?",
-    source: "Recht und Politik im Gesundheitswesen 26 (2020), S. 83–94"
+    source: "Recht und Politik im Gesundheitswesen 26 (2020), S. 83–94",
+    href: "https://www.bundestag.de/resource/blob/1139140/L-505-Organspende.pdf"
   },
   {
     year: "2020",
     type: "Kartellrecht",
     title: "Beweiserleichterung im Kartellschadensersatz",
-    source: "Zeitschrift für das Juristische Studium"
+    source: "Zeitschrift für das Juristische Studium",
+    href: "https://www.zjs-online.com/dat/artikel/2020_4_1406.pdf"
   },
   {
     year: "2020",
     type: "Lebensmittelrecht",
     title:
       "Animal Welfare nach der Novel-Food-Verordnung – auch für Insekten?",
-    source: "Natur und Recht"
+    source: "Natur und Recht",
+    href: "https://doi.org/10.1007/s10357-020-3726-x"
   },
   {
     year: "2019",
@@ -130,6 +140,12 @@ const publications: Publication[] = [
 const careerMilestones = [
   {
     period: "seit 2026",
+    title: "Assistenzarzt",
+    place: "Klinikum Oldenburg AöR",
+    text: "Ärztliche Tätigkeit in der klinischen Patientenversorgung am überregionalen Maximalversorger im Nordwesten."
+  },
+  {
+    period: "seit 2026",
     title: "Mitgründer & COO",
     place: "Save Order Safe UG (haftungsbeschränkt)",
     text: "Aufbau einer Sport-Tech-Plattform für vergünstigte Last-Minute-Buchungen und die bessere Auslastung von Sportangeboten."
@@ -141,7 +157,7 @@ const careerMilestones = [
     text: "Fachliche Begutachtung medizinischer und medizinrechtlicher Beiträge."
   },
   {
-    period: "seit 2023",
+    period: "2023–2026",
     title: "Hochschullehrer",
     place: "Hochschule Fresenius · Fachbereich Gesundheit & Soziales",
     text: "Anatomie, Physiologie und klinische Medizin mit Schwerpunkten in Neurowissenschaften und KI in der Medizin."
@@ -208,7 +224,13 @@ const careerMilestones = [
   }
 ];
 
-const educationMilestones = [
+const educationMilestones: Array<{
+  period: string;
+  title: string;
+  place: string;
+  text: string;
+  href?: string;
+}> = [
   {
     period: "2022",
     title: "LL.M. Medizinrecht",
@@ -225,11 +247,12 @@ const educationMilestones = [
     period: "2019",
     title: "Dr. med.",
     place: "Eberhard Karls Universität Tübingen",
-    text: "Dissertation zur Wirkung von HMGB1 auf die Interaktion von Thrombozyten und Monozyten."
+    text: "Dissertation zur Wirkung von HMGB1 auf die Interaktion von Thrombozyten und Monozyten.",
+    href: "https://publikationen.uni-tuebingen.de/xmlui/bitstream/handle/10900/87303/Die%20Wirkung%20von%20HMGB1%20auf%20die%20Interaktion%20von%20Thrombozyten%20und%20Monozyten%20in%20Survival-%2C%20Migrations-%20und%20Phagozytose-Assays-Druckfassung%2024.03.2019%20ohne%20CV.pdf"
   },
   {
     period: "2019",
-    title: "Erstes juristisches Staatsexamen · Diplom-Jurist",
+    title: "Erstes juristisches Staatsexamen",
     place: "Eberhard Karls Universität Tübingen",
     text: "Abschluss des rechtswissenschaftlichen Studiums."
   },
@@ -303,19 +326,109 @@ const talks = [
 
 const episodes = [
   {
-    number: "02",
-    title: "In dubio pro vita! – Im Zweifel für das Leben",
-    meta: "Patientenverfügung · Selbstbestimmung · Notfallmedizin"
+    number: "00",
+    title: "Warum „Recht Medizinisch“?",
+    meta: "20.04.2026 · Medizin · Pflege · Recht",
+    href: "https://open.spotify.com/episode/0OQr55pWtRy4GiLd2UV9S3"
   },
   {
     number: "01",
-    title: "Betäubungsmittel im Klinikalltag",
-    meta: "Human Factors · Verantwortung · Patientensicherheit"
+    title: "Betäubungsmittel im Klinikalltag – grobe Schnitzer und wie wir diese abwenden können",
+    meta: "27.04.2026 · Human Factors · Patientensicherheit",
+    href: "https://open.spotify.com/episode/3smCPZtODLxq53RnE9Ncem"
   },
   {
-    number: "00",
-    title: "Warum „Recht Medizinisch“?",
-    meta: "Medizin · Pflege · Recht"
+    number: "02",
+    title: "In dubio pro vita! – Im Zweifel für das Leben",
+    meta: "25.05.2026 · Patientenverfügung · Selbstbestimmung",
+    href: "https://open.spotify.com/episode/3eyia0qcX192zupd65u3dL"
+  },
+  {
+    number: "K",
+    title: "Kurzvisite: Der Erlanger Baby-Fall",
+    meta: "22.06.2026 · Transplantationsmedizin · Ethik",
+    href: "https://open.spotify.com/episode/68uTnDMKZPPOVyYupAUIXF"
+  },
+  {
+    number: "03",
+    title: "Aufklärung geklärt",
+    meta: "29.06.2026 · Einwilligung · Selbstbestimmungsrecht",
+    href: "https://open.spotify.com/episode/3ROIMztRtgvjiFgLir18Te"
+  },
+  {
+    number: "04.1",
+    title: "Ultima Ratio! – Freiheitsentziehende Maßnahmen bei Kindern und Jugendlichen",
+    meta: "27.07.2026 · Fixierung · Familiengericht",
+    href: "https://open.spotify.com/show/7aowMbc68QlEwd0K4x5OT8"
+  },
+  {
+    number: "04.2",
+    title: "Freiheitsentziehende Maßnahmen beim Erwachsenen",
+    meta: "10.08.2026 · Einwilligungsfähigkeit · Betreuungsrecht",
+    href: "https://open.spotify.com/show/7aowMbc68QlEwd0K4x5OT8"
+  },
+  {
+    number: "05",
+    title: "So viel wie nötig, so wenig wie möglich – Defensivmedizin und Überdiagnostik",
+    meta: "24.08.2026 · Diagnostik · Verantwortung",
+    href: "https://open.spotify.com/show/7aowMbc68QlEwd0K4x5OT8"
+  }
+];
+
+const podcastPlatforms = [
+  {
+    label: "Spotify",
+    href: "https://open.spotify.com/show/7aowMbc68QlEwd0K4x5OT8"
+  },
+  {
+    label: "Apple Podcasts",
+    href: "https://podcasts.apple.com/de/podcast/recht-medizinisch/id1896818482"
+  },
+  {
+    label: "Amazon Music",
+    href: "https://music.amazon.de/podcasts/9870b74b-c54d-4fae-b5b9-0c9e7728a2ad/recht-medizinisch"
+  },
+  {
+    label: "Podcast-Website",
+    href: "https://pg-rechtmedizinisch.github.io/"
+  }
+];
+
+const sportsMilestones = [
+  {
+    period: "seit 2005",
+    title: "Basketball-Schiedsrichter",
+    text: "Langjährige Verantwortung auf dem Spielfeld – mit sicherem Urteil, Kommunikation und Ruhe in dynamischen Situationen."
+  },
+  {
+    period: "NBBL bis Regionalliga",
+    title: "Basketball als Spieler",
+    text: "Basketballerfahrung von der Nachwuchs-Basketball-Bundesliga bis zur Regionalliga; seit 2024 Spieler bei BTB Oldenburg."
+  },
+  {
+    period: "seit 02/2020",
+    title: "Wettkampfsport Basketball",
+    text: "Verantwortung für den Basketball-Wettkampfsport der Eberhard Karls Universität Tübingen."
+  },
+  {
+    period: "2022–2023",
+    title: "Deutsche Hochschulmeisterschaften",
+    text: "Mitverantwortung für die Deutschen Hochschulmeisterschaften Basketball 5-gegen-5 und 3x3 in Tübingen."
+  },
+  {
+    period: "2023",
+    title: "Podestplätze & internationale Turniere",
+    text: "Zweiter Platz der Männer bei der Deutschen Hochschulmeisterschaft 3x3, dritter Platz bei der DHM Basketball und weitere DHM-Platzierungen 2022–2023; beim WIUC Paris 2023 Achtelfinale der Damen sowie Viertelfinale der Herren und im 3x3."
+  },
+  {
+    period: "2023–2024",
+    title: "Coaching & EuroMilano",
+    text: "Auszeichnung als Best Coach beim Tournoi International INSA Lyon 2023 und Achtelfinale der Herren beim EuroMilano 2024."
+  },
+  {
+    period: "seit 2008 / 2024",
+    title: "Tennis & Kanusport",
+    text: "Verbunden mit dem TC Stammheim seit 2008 und der Kanugesellschaft Stuttgart seit 2024."
   }
 ];
 
@@ -359,7 +472,6 @@ const qualifications = [
   "Ass. iur.",
   "Volljurist",
   "LL.M. Medizinrecht",
-  "Diplom-Jurist",
   "Hochschullehrer",
   "Autor",
   "Unternehmer"
@@ -435,7 +547,7 @@ export default function App() {
   useEffect(() => {
     const root = document.documentElement;
     const revealTargets = document.querySelectorAll<HTMLElement>(
-      ".section-label, .section-heading-row, .profile-lead, .field-card, .project-card, .venture-hero, .venture-offer, .library-card, .publication-row, .podcast-art, .podcast-copy, .podcast-episodes article, .vita-intro, .timeline article, .education-panel, .talk-grid article, .facets-intro, .facet-grid article, .contact > *:not(.contact-shape)"
+      ".section-label, .section-heading-row, .profile-lead, .field-card, .project-card, .venture-hero, .venture-offer, .library-card, .publication-row, .podcast-art, .podcast-copy, .podcast-episodes > a, .vita-intro, .timeline article, .education-panel, .talk-grid article, .sports-head, .sports-grid article, .facets-intro, .facet-grid article, .contact > *:not(.contact-shape)"
     );
 
     root.classList.add("motion-ready");
@@ -506,7 +618,7 @@ export default function App() {
   return (
     <main>
       <div className="site-intro" aria-hidden="true">
-        <span>PG</span>
+        <img className="intro-mark" src="/favicon.svg" alt="" />
         <p>Medizin × Recht</p>
       </div>
       <div className="pointer-aura" aria-hidden="true" />
@@ -515,9 +627,9 @@ export default function App() {
       </div>
       <header className="site-header">
         <a className="brand" href="#top" aria-label="Zur Startseite">
-          <span className="brand-mark">P/G</span>
+          <img className="brand-mark" src="/favicon.svg" alt="" />
           <span className="brand-name">
-            Philipp Graef
+            Dr. med. Ass. iur. Philipp Graef, LL.M. (Medizinrecht)
             <small>Medizin × Recht</small>
           </span>
         </a>
@@ -532,6 +644,7 @@ export default function App() {
           <a href="#save-order-safe">SOS</a>
           <a href="#publikationen">Publikationen</a>
           <a href="#vita">Vita</a>
+          <a href="#sport">Sport</a>
         </nav>
         <a className="header-contact" href="#kontakt">
           Kontakt
@@ -565,21 +678,21 @@ export default function App() {
           </p>
           <h1>
             <span>Medizin</span>
-            <span className="hero-line-shift"><em>verstehen.</em></span>
-            <span>Recht einordnen.</span>
+            <span className="hero-line-understanding"><em>verstehen.</em></span>
+            <span className="hero-line-law"><strong>Recht</strong> <em>einordnen.</em></span>
             <span className="hero-line-future">Zukunft gestalten.</span>
           </h1>
           <p className="hero-intro">
-            Dr. med. Philipp Graef, Ass. iur., LL.M. verbindet als Arzt und
-            Volljurist klinische Erfahrung mit juristischer Präzision – in
-            Lehre, Forschung, Publikation und unternehmerischer Innovation.
+            Dr. med. Ass. iur. Philipp Graef, LL.M. (Medizinrecht) verbindet als
+            Arzt und Volljurist klinische Erfahrung mit juristischer Präzision –
+            in Lehre, Forschung und unternehmerischer Innovation.
           </p>
           <div className="hero-actions">
             <a className="button button-primary" href="#profil">
               Profil entdecken
               <Arrow />
             </a>
-            <a className="text-link" href="#projekte">
+            <a className="button button-secondary" href="#projekte">
               Aktuelle Projekte
               <Arrow />
             </a>
@@ -589,7 +702,6 @@ export default function App() {
             <span>Ass. iur.</span>
             <span>Volljurist</span>
             <span>LL.M.</span>
-            <span>Diplom-Jurist</span>
           </div>
         </div>
 
@@ -598,7 +710,7 @@ export default function App() {
           <div className="portrait-panel">
             <img
               src="/philipp-graef-hd.webp"
-              alt="Dr. med. Philipp Graef"
+              alt="Dr. med. Ass. iur. Philipp Graef, LL.M. (Medizinrecht)"
               width={1116}
               height={1409}
               decoding="async"
@@ -747,21 +859,23 @@ export default function App() {
                 decoding="async"
               />
             </a>
-            <p>
-              Save Order Safe verbindet Sportler:innen, Vereine und
-              Freizeitanlagen in einem digitalen Ökosystem: kurzfristige
-              Ausfälle werden zu neuen Chancen, Kapazitäten besser genutzt und
-              Clubs technologisch zukunftsfähig.
-            </p>
-            <a
-              className="button button-light"
-              href="https://saveordersafe.com/"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Unternehmen entdecken
-              <Arrow diagonal />
-            </a>
+            <div className="venture-intro-copy">
+              <p>
+                Save Order Safe verbindet Sportler:innen, Vereine und
+                Freizeitanlagen in einem digitalen Ökosystem: kurzfristige
+                Ausfälle werden zu neuen Chancen, Kapazitäten besser genutzt und
+                Clubs technologisch zukunftsfähig.
+              </p>
+              <a
+                className="button button-light"
+                href="https://saveordersafe.com/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Unternehmen entdecken
+                <Arrow diagonal />
+              </a>
+            </div>
           </div>
         </div>
         <div className="venture-offers">
@@ -937,27 +1051,33 @@ export default function App() {
             und Recht verständlich erklärt.
           </p>
           <p className="podcast-hosts">
-            Mit Dr. med. Philipp Graef und Florian Schlepple
+            Mit Florian Schlepple
           </p>
-          <a
-            className="button button-light"
-            href="https://open.spotify.com/show/7aowMbc68QlEwd0K4x5OT8"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Alle Folgen auf Spotify
-            <Arrow diagonal />
-          </a>
+          <div className="podcast-platforms" aria-label="Podcast-Plattformen">
+            {podcastPlatforms.map((platform, index) => (
+              <a
+                className={index === 0 ? "button button-light" : "button button-podcast"}
+                href={platform.href}
+                target="_blank"
+                rel="noreferrer"
+                key={platform.href}
+              >
+                {platform.label}
+                <Arrow diagonal />
+              </a>
+            ))}
+          </div>
         </div>
         <div className="podcast-episodes">
           {episodes.map((episode) => (
-            <article key={episode.number}>
+            <a href={episode.href} target="_blank" rel="noreferrer" key={episode.number}>
               <span>{episode.number}</span>
               <div>
                 <p>{episode.title}</p>
                 <small>{episode.meta}</small>
               </div>
-            </article>
+              <Arrow diagonal />
+            </a>
           ))}
         </div>
       </section>
@@ -1026,6 +1146,16 @@ export default function App() {
                     <h3>{milestone.title}</h3>
                     <p className="timeline-place">{milestone.place}</p>
                     <p>{milestone.text}</p>
+                    {milestone.href && (
+                      <a
+                        className="education-link"
+                        href={milestone.href}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        Dissertation lesen <Arrow diagonal />
+                      </a>
+                    )}
                   </div>
                 </article>
               ))}
@@ -1066,6 +1196,34 @@ export default function App() {
         </button>
       </section>
 
+      <section className="sports section" id="sport" aria-labelledby="sports-title">
+        <div className="section-label">
+          <span>06</span>
+          <p>Sport</p>
+        </div>
+        <div className="sports-head">
+          <p className="kicker">Teamgeist · Urteilskraft · Ausdauer</p>
+          <h2 id="sports-title">
+            Sport als <em>zweite Sprache</em> für Verantwortung.
+          </h2>
+          <p>
+            Basketball begleitet mich seit vielen Jahren als Spieler,
+            Schiedsrichter, Coach und Organisator – ergänzt durch Tennis und
+            Kanusport.
+          </p>
+        </div>
+        <div className="sports-grid">
+          {sportsMilestones.map((milestone, index) => (
+            <article key={milestone.period + milestone.title}>
+              <span className="sports-index">{String(index + 1).padStart(2, "0")}</span>
+              <p className="sports-period">{milestone.period}</p>
+              <h3>{milestone.title}</h3>
+              <p>{milestone.text}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
       <section className="facets section" aria-labelledby="facets-title">
         <div className="facets-intro">
           <p className="kicker">Weitere Facetten</p>
@@ -1076,9 +1234,11 @@ export default function App() {
             <span className="facet-icon">✦</span>
             <h3>Auszeichnungen</h3>
             <p>
-              Gewinner des VGH Moot Courts Baden-Württemberg 2018; Erfolge bei
-              Jugend forscht sowie in der Internationalen Chemie- und
-              Biologie-Olympiade.
+              Landesieger Baden-Württemberg bei Jugend forscht im Fachgebiet
+              Biologie sowie Regionalsieger in Biologie und Chemie; Gewinner
+              des VGH Moot Courts Baden-Württemberg 2018, dritte Runde der
+              Internationalen Chemie-Olympiade, zweite Runde der Internationalen
+              Biologie-Olympiade und Ehrennadel der Stadt Nagold.
             </p>
           </article>
           <article>
@@ -1098,6 +1258,14 @@ export default function App() {
               verhandlungssicherem Niveau sowie gute Französischkenntnisse.
             </p>
           </article>
+          <article>
+            <span className="facet-icon">↗</span>
+            <h3>Sport</h3>
+            <p>
+              NBBL- und Regionalligaerfahrung, Hochschulbasketball mit nationalen
+              Podestplätzen, Best-Coach-Auszeichnung und Schiedsrichter seit 2005.
+            </p>
+          </article>
         </div>
       </section>
 
@@ -1109,9 +1277,8 @@ export default function App() {
           Kontakt
         </p>
         <h2>
-          Lassen Sie uns
-          <br />
-          ins Gespräch <em>kommen.</em>
+          <span>Lassen Sie uns</span>
+          <span>ins Gespräch <em>kommen.</em></span>
         </h2>
         <p>
           Für Vorträge, Lehre, Publikationen, Projekte und interdisziplinären
@@ -1121,24 +1288,17 @@ export default function App() {
           graef.philipp@googlemail.com
           <Arrow diagonal />
         </a>
-        <div className="contact-signature">
-          <img
-            src="/philipp-graef-signature.webp"
-            alt="Handschriftliche Signatur von Philipp Graef"
-            width={803}
-            height={509}
-            loading="lazy"
-            decoding="async"
-          />
-          <span>Dr. med. Philipp Graef · Ass. iur.</span>
+        <div className="contact-signature-safe" aria-label="Persönliche Signaturmarke">
+          <div className="contact-monogram" aria-hidden="true">PG</div>
+          <span>Dr. med. Ass. iur. Philipp Graef, LL.M. (Medizinrecht)</span>
         </div>
       </section>
 
       <footer>
         <div className="footer-brand">
-          <span className="brand-mark">PG</span>
+          <img className="brand-mark" src="/favicon.svg" alt="" />
           <p>
-            Dr. med. Philipp Graef, Ass. iur., LL.M.
+            Dr. med. Ass. iur. Philipp Graef, LL.M. (Medizinrecht)
             <br />
             Arzt · Volljurist · Hochschullehrer · Unternehmer
           </p>
@@ -1153,7 +1313,7 @@ export default function App() {
             <a href="/datenschutz">Datenschutz</a>
             <a href="#top">Nach oben ↑</a>
           </div>
-          <span>© {new Date().getFullYear()} Philipp Graef</span>
+          <span>© {new Date().getFullYear()} Dr. med. Ass. iur. Philipp Graef, LL.M. (Medizinrecht)</span>
         </div>
       </footer>
     </main>
