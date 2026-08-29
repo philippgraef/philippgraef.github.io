@@ -1,40 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { LegalPage } from "./LegalPages";
 
-const ArrowUpRight = ({ size = 18 }: { size?: number }) => (
-  <svg
-    aria-hidden="true"
-    width={size}
-    height={size}
-    viewBox="0 0 24 24"
-    fill="none"
-  >
-    <path
-      d="M7 17 17 7M8 7h9v9"
-      stroke="currentColor"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth="1.8"
-    />
-  </svg>
-);
-
-const ArrowRight = ({ size = 18 }: { size?: number }) => (
-  <svg
-    aria-hidden="true"
-    width={size}
-    height={size}
-    viewBox="0 0 24 24"
-    fill="none"
-  >
-    <path
-      d="M5 12h14m-5-5 5 5-5 5"
-      stroke="currentColor"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth="1.8"
-    />
-  </svg>
+const Arrow = ({ diagonal = false }: { diagonal?: boolean }) => (
+  <span className="arrow" aria-hidden="true">
+    {diagonal ? "↗" : "→"}
+  </span>
 );
 
 const Plus = ({ open }: { open: boolean }) => (
@@ -433,7 +403,7 @@ function PublicationRow({ publication }: { publication: Publication }) {
       </span>
       {publication.href ? (
         <span className="publication-arrow">
-          <ArrowUpRight />
+          <Arrow diagonal />
         </span>
       ) : (
         <span className="publication-dot" aria-hidden="true" />
@@ -460,6 +430,62 @@ export default function App() {
   const [showAllCareer, setShowAllCareer] = useState(false);
   const [showEducation, setShowEducation] = useState(false);
   const [showAllTalks, setShowAllTalks] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const root = document.documentElement;
+    const revealTargets = document.querySelectorAll<HTMLElement>(
+      ".section-label, .section-heading-row, .profile-lead, .field-card, .project-card, .venture-hero, .venture-offer, .library-card, .publication-row, .podcast-art, .podcast-copy, .podcast-episodes article, .vita-intro, .timeline article, .education-panel, .talk-grid article, .facets-intro, .facet-grid article, .contact > *:not(.contact-shape)"
+    );
+
+    root.classList.add("motion-ready");
+    revealTargets.forEach((element, index) => {
+      element.classList.add("reveal-target");
+      element.style.setProperty("--reveal-order", String(index % 4));
+    });
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-revealed");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { rootMargin: "0px 0px -10%", threshold: 0.08 }
+    );
+
+    revealTargets.forEach((element) => observer.observe(element));
+
+    let frame = 0;
+    const updateScrollProgress = () => {
+      if (frame) return;
+      frame = window.requestAnimationFrame(() => {
+        const available = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = available > 0 ? window.scrollY / available : 0;
+        root.style.setProperty("--scroll-progress", String(progress));
+        frame = 0;
+      });
+    };
+
+    const updatePointer = (event: PointerEvent) => {
+      root.style.setProperty("--pointer-x", `${event.clientX}px`);
+      root.style.setProperty("--pointer-y", `${event.clientY}px`);
+    };
+
+    updateScrollProgress();
+    window.addEventListener("scroll", updateScrollProgress, { passive: true });
+    window.addEventListener("pointermove", updatePointer, { passive: true });
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("scroll", updateScrollProgress);
+      window.removeEventListener("pointermove", updatePointer);
+      if (frame) window.cancelAnimationFrame(frame);
+      root.classList.remove("motion-ready");
+    };
+  }, []);
 
   const legalPath = window.location.pathname.replace(/\/+$/, "") || "/";
   if (legalPath === "/impressum") {
@@ -479,38 +505,69 @@ export default function App() {
 
   return (
     <main>
+      <div className="site-intro" aria-hidden="true">
+        <span>PG</span>
+        <p>Medizin × Recht</p>
+      </div>
+      <div className="pointer-aura" aria-hidden="true" />
+      <div className="page-progress" aria-hidden="true">
+        <span />
+      </div>
       <header className="site-header">
         <a className="brand" href="#top" aria-label="Zur Startseite">
-          <span className="brand-mark">PG</span>
-          <span className="brand-name">Philipp Graef</span>
+          <span className="brand-mark">P/G</span>
+          <span className="brand-name">
+            Philipp Graef
+            <small>Medizin × Recht</small>
+          </span>
         </a>
-        <nav aria-label="Hauptnavigation">
+        <nav
+          className={menuOpen ? "is-open" : ""}
+          aria-label="Hauptnavigation"
+          onClick={() => setMenuOpen(false)}
+        >
           <a href="#profil">Profil</a>
           <a href="#projekte">Projekte</a>
+          <a href="#buecher">Bücher</a>
           <a href="#save-order-safe">SOS</a>
           <a href="#publikationen">Publikationen</a>
           <a href="#vita">Vita</a>
         </nav>
         <a className="header-contact" href="#kontakt">
           Kontakt
-          <ArrowUpRight size={16} />
+          <Arrow diagonal />
         </a>
+        <button
+          className="menu-toggle"
+          type="button"
+          aria-label={menuOpen ? "Menü schließen" : "Menü öffnen"}
+          aria-expanded={menuOpen}
+          onClick={() => setMenuOpen((current) => !current)}
+        >
+          <span />
+          <span />
+        </button>
       </header>
 
       <section className="hero" id="top">
-        <div className="hero-shape hero-shape-one" aria-hidden="true" />
-        <div className="hero-shape hero-shape-two" aria-hidden="true" />
+        <div className="hero-grid" aria-hidden="true" />
+        <p className="hero-edition" aria-hidden="true">
+          Portfolio / 2026
+        </p>
+        <div className="hero-wordmark" aria-hidden="true">
+          <span>MED</span>
+          <span>LEX</span>
+        </div>
         <div className="hero-copy">
           <p className="eyebrow">
             <span />
             Medizin · Recht · Lehre · Innovation
           </p>
           <h1>
-            Medizin verstehen.
-            <br />
-            Recht <em>einordnen.</em>
-            <br />
-            Zukunft gestalten.
+            <span>Medizin</span>
+            <span className="hero-line-shift"><em>verstehen.</em></span>
+            <span>Recht einordnen.</span>
+            <span className="hero-line-future">Zukunft gestalten.</span>
           </h1>
           <p className="hero-intro">
             Dr. med. Philipp Graef, Ass. iur., LL.M. verbindet als Arzt und
@@ -520,11 +577,11 @@ export default function App() {
           <div className="hero-actions">
             <a className="button button-primary" href="#profil">
               Profil entdecken
-              <ArrowRight />
+              <Arrow />
             </a>
             <a className="text-link" href="#projekte">
               Aktuelle Projekte
-              <ArrowRight />
+              <Arrow />
             </a>
           </div>
           <div className="hero-credentials" aria-label="Qualifikationen">
@@ -537,7 +594,7 @@ export default function App() {
         </div>
 
         <div className="hero-visual">
-          <div className="portrait-halo" aria-hidden="true" />
+          <div className="portrait-index" aria-hidden="true">01</div>
           <div className="portrait-panel">
             <img
               src="/philipp-graef-hd.webp"
@@ -549,19 +606,18 @@ export default function App() {
             />
           </div>
           <div className="portrait-caption">
+            <small>Perspektive</small>
             <span>Arzt</span>
-            <span>Volljurist</span>
-            <span>Hochschullehrer</span>
+            <span>× Volljurist</span>
           </div>
           <div className="hero-note">
-            <span>Dr. med. · Ass. iur.</span>
-            <p>Medizin und Recht nicht nebeneinander, sondern zusammen denken.</p>
+            <span>Dr. med. · Ass. iur. · LL.M.</span>
+            <p>Zwei Disziplinen. Ein Blick fürs Ganze.</p>
           </div>
         </div>
 
         <div className="scroll-note" aria-hidden="true">
-          <span />
-          Entdecken
+          Scroll to explore <span>↓</span>
         </div>
       </section>
 
@@ -640,7 +696,7 @@ export default function App() {
                 rel={project.href.startsWith("http") ? "noreferrer" : undefined}
               >
                 {project.link}
-                <ArrowUpRight size={16} />
+                <Arrow diagonal />
               </a>
             </article>
           ))}
@@ -704,7 +760,7 @@ export default function App() {
               rel="noreferrer"
             >
               Unternehmen entdecken
-              <ArrowUpRight />
+              <Arrow diagonal />
             </a>
           </div>
         </div>
@@ -723,66 +779,107 @@ export default function App() {
               <p>{offer.text}</p>
               <span className="venture-link">
                 {offer.link}
-                <ArrowUpRight size={16} />
+                <Arrow diagonal />
               </span>
             </a>
           ))}
         </div>
       </section>
 
-      <section className="book section" aria-labelledby="book-title">
-        <div className="book-visual">
-          <div className="book-backdrop" aria-hidden="true" />
-          <img
-            src="/buch-gebaermuttertransplantation.webp"
-            alt="Buchcover: Die Gebärmuttertransplantation – Medizin, Recht, Ethik"
-            width={741}
-            height={1050}
-            loading="lazy"
-          />
-          <span className="book-badge">Monografie · 2024</span>
+      <section className="library section" id="buecher" aria-labelledby="library-title">
+        <div className="section-label">
+          <span>03</span>
+          <p>Bücher</p>
         </div>
-        <div className="book-copy">
-          <p className="eyebrow">
-            <span />
-            Medizin · Recht · Ethik
-          </p>
-          <h2 id="book-title">Die Gebärmutter&shy;transplantation</h2>
-          <p className="book-subtitle">Medizin – Recht – Ethik</p>
-          <p>
-            Das Werk untersucht medizinische Grundlagen, rechtliche
-            Zulässigkeit, ethische Dimensionen und gesellschaftliche Folgen
-            dieser innovativen Behandlung.
-          </p>
-          <dl className="book-meta">
-            <div>
-              <dt>Umfang</dt>
-              <dd>306 Seiten</dd>
+        <div className="library-head">
+          <p className="kicker">Zwei Bücher · zwei Perspektiven</p>
+          <h2 id="library-title">
+            Vom präzisen Argument bis zu dem, was <em>unausgesprochen</em> bleibt.
+          </h2>
+        </div>
+
+        <div className="library-grid">
+          <article className="library-card library-card-literary">
+            <div className="library-cover">
+              <span className="library-orbit" aria-hidden="true" />
+              <img
+                src="/die-leisen-abstaende-cover.jpg"
+                alt="Buchcover: Die leisen Abstände zwischen uns"
+                width={996}
+                height={1500}
+                loading="lazy"
+                decoding="async"
+              />
             </div>
-            <div>
-              <dt>Reihe</dt>
-              <dd>Medizinrecht in Forschung und Praxis · Band 74</dd>
+            <div className="library-copy">
+              <p className="library-type">Literarische Kurzprosa · 2026</p>
+              <h3>Die leisen Abstände zwischen uns</h3>
+              <p className="library-subtitle">
+                Sieben Geschichten und Aphorismen über Nähe, Erinnerung und das Weitergehen.
+              </p>
+              <p>
+                Ein leiser, nachdenklicher Band über Liebe, Eifersucht, Vertrauen
+                und die kleinen Entscheidungen, nach denen nichts mehr ganz so
+                ist wie zuvor.
+              </p>
+              <dl className="book-meta">
+                <div><dt>Umfang</dt><dd>86 Seiten</dd></div>
+                <div><dt>Publikation</dt><dd>Kindle Direct Publishing</dd></div>
+                <div><dt>ISBN-13</dt><dd>979-8192142127</dd></div>
+              </dl>
+              <a
+                className="button button-ink"
+                href="https://www.amazon.de/dp/B0HF61ZHX9"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Bei Amazon ansehen <Arrow diagonal />
+              </a>
             </div>
-            <div>
-              <dt>ISBN</dt>
-              <dd>978-3-339-13992-4</dd>
+          </article>
+
+          <article className="library-card library-card-academic">
+            <div className="library-cover">
+              <span className="library-index" aria-hidden="true">74</span>
+              <img
+                src="/buch-gebaermuttertransplantation.webp"
+                alt="Buchcover: Die Gebärmuttertransplantation – Medizin, Recht, Ethik"
+                width={741}
+                height={1050}
+                loading="lazy"
+                decoding="async"
+              />
             </div>
-          </dl>
-          <a
-            className="button button-primary"
-            href="https://www.verlagdrkovac.de/978-3-339-13992-4.htm"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Zum Verlag
-            <ArrowUpRight />
-          </a>
+            <div className="library-copy">
+              <p className="library-type">Monografie · Medizinrecht · 2024</p>
+              <h3>Die Gebärmutter&shy;transplantation</h3>
+              <p className="library-subtitle">Medizin – Recht – Ethik</p>
+              <p>
+                Medizinische Grundlagen, rechtliche Zulässigkeit, ethische
+                Dimensionen und gesellschaftliche Folgen einer innovativen
+                Behandlung – systematisch zusammengedacht.
+              </p>
+              <dl className="book-meta">
+                <div><dt>Umfang</dt><dd>306 Seiten</dd></div>
+                <div><dt>Reihe</dt><dd>Medizinrecht · Band 74</dd></div>
+                <div><dt>ISBN</dt><dd>978-3-339-13992-4</dd></div>
+              </dl>
+              <a
+                className="button button-outline"
+                href="https://www.verlagdrkovac.de/978-3-339-13992-4.htm"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Zum Verlag <Arrow diagonal />
+              </a>
+            </div>
+          </article>
         </div>
       </section>
 
       <section className="publications section" id="publikationen">
         <div className="section-label">
-          <span>03</span>
+          <span>04</span>
           <p>Publikationen</p>
         </div>
         <div className="section-heading-row">
@@ -849,7 +946,7 @@ export default function App() {
             rel="noreferrer"
           >
             Alle Folgen auf Spotify
-            <ArrowUpRight />
+            <Arrow diagonal />
           </a>
         </div>
         <div className="podcast-episodes">
@@ -867,7 +964,7 @@ export default function App() {
 
       <section className="vita section" id="vita">
         <div className="section-label">
-          <span>04</span>
+          <span>05</span>
           <p>Vita</p>
         </div>
         <div className="vita-layout">
@@ -1022,7 +1119,7 @@ export default function App() {
         </p>
         <a className="contact-mail" href="mailto:graef.philipp@googlemail.com">
           graef.philipp@googlemail.com
-          <ArrowUpRight size={28} />
+          <Arrow diagonal />
         </a>
         <div className="contact-signature">
           <img

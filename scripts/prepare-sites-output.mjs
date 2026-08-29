@@ -6,6 +6,7 @@ const dist = resolve(root, "dist");
 
 const mimeTypes = {
   ".jpg": "image/jpeg",
+  ".png": "image/png",
   ".svg": "image/svg+xml; charset=utf-8",
   ".txt": "text/plain; charset=utf-8",
   ".webp": "image/webp"
@@ -38,7 +39,9 @@ const publicAssets = [
   "/philipp-graef-signature.webp",
   "/save-order-safe-logo.webp",
   "/buch-gebaermuttertransplantation.webp",
+  "/die-leisen-abstaende-cover.jpg",
   "/recht-medizinisch-cover.jpg",
+  "/og.png",
   "/favicon.svg",
   "/robots.txt"
 ];
