@@ -241,7 +241,7 @@ const educationMilestones: Array<{
     period: "2022",
     title: "Zweites juristisches Staatsexamen · Ass. iur.",
     place: "Land Baden-Württemberg",
-    text: "Abschluss der juristischen Ausbildung und Qualifikation als Volljurist."
+    text: "Abschluss der juristischen Ausbildung nach beiden Staatsexamina."
   },
   {
     period: "2019",
@@ -416,6 +416,11 @@ const sportsMilestones = [
     text: "Mitverantwortung für die Deutschen Hochschulmeisterschaften Basketball 5-gegen-5 und 3x3 in Tübingen."
   },
   {
+    period: "2022",
+    title: "Turniersieg Eurokonstantia",
+    text: "Erster Platz mit der Universität Tübingen beim adh-Open Basketball Mixed der 15. Eurokonstantia in Konstanz."
+  },
+  {
     period: "2023",
     title: "Podestplätze & internationale Turniere",
     text: "Zweiter Platz der Männer bei der Deutschen Hochschulmeisterschaft 3x3, dritter Platz bei der DHM Basketball und weitere DHM-Platzierungen 2022–2023; beim WIUC Paris 2023 Achtelfinale der Damen sowie Viertelfinale der Herren und im 3x3."
@@ -470,7 +475,6 @@ const projects = [
 const qualifications = [
   "Dr. med.",
   "Ass. iur.",
-  "Volljurist",
   "LL.M. Medizinrecht",
   "Hochschullehrer",
   "Autor",
@@ -547,7 +551,7 @@ export default function App() {
   useEffect(() => {
     const root = document.documentElement;
     const revealTargets = document.querySelectorAll<HTMLElement>(
-      ".section-label, .section-heading-row, .profile-lead, .field-card, .project-card, .venture-hero, .venture-offer, .library-card, .publication-row, .podcast-art, .podcast-copy, .podcast-episodes > a, .vita-intro, .timeline article, .education-panel, .talk-grid article, .sports-head, .sports-grid article, .facets-intro, .facet-grid article, .contact > *:not(.contact-shape)"
+      ".section-label, .section-heading-row, .profile-lead, .editorial-visual, .field-card, .project-card, .venture-hero, .venture-offer, .library-card, .publication-row, .podcast-art, .podcast-copy, .podcast-episodes > a, .vita-intro, .timeline article, .education-panel, .talk-grid article, .sports-head, .sports-grid article, .facets-intro, .facet-grid article, .contact > *:not(.contact-shape)"
     );
 
     root.classList.add("motion-ready");
@@ -683,9 +687,9 @@ export default function App() {
             <span className="hero-line-future">Zukunft gestalten.</span>
           </h1>
           <p className="hero-intro">
-            Dr. med. Ass. iur. Philipp Graef, LL.M. (Medizinrecht) verbindet als
-            Arzt und Volljurist klinische Erfahrung mit juristischer Präzision –
-            in Lehre, Forschung und unternehmerischer Innovation.
+            Dr. med. Ass. iur. Philipp Graef, LL.M. (Medizinrecht) verbindet
+            klinische Erfahrung mit juristischer Präzision – in Lehre, Forschung
+            und unternehmerischer Innovation.
           </p>
           <div className="hero-actions">
             <a className="button button-primary" href="#profil">
@@ -700,7 +704,6 @@ export default function App() {
           <div className="hero-credentials" aria-label="Qualifikationen">
             <span>Dr. med.</span>
             <span>Ass. iur.</span>
-            <span>Volljurist</span>
             <span>LL.M.</span>
           </div>
         </div>
@@ -769,6 +772,18 @@ export default function App() {
             </p>
           </div>
         </div>
+        <figure className="editorial-visual profile-visual">
+          <img
+            src="/editorial/medicine-law.webp"
+            alt="Abstrakte geschwungene Formen, medizinische Linien und Bücher als Sinnbild für Medizin, Recht und Forschung"
+            loading="lazy"
+            decoding="async"
+          />
+          <figcaption>
+            <span>Medizin × Recht</span>
+            <p>Wissen verbinden. Verantwortung ganzheitlich denken.</p>
+          </figcaption>
+        </figure>
         <div className="field-grid">
           {fields.map((field) => (
             <article className="field-card" key={field.number}>
@@ -1007,6 +1022,18 @@ export default function App() {
             Monografie.
           </p>
         </div>
+        <figure className="editorial-visual knowledge-visual">
+          <img
+            src="/editorial/knowledge.webp"
+            alt="Geschwungene Papierflächen, Bücher und Mikrofon als Sinnbild für Publikationen, Lehre und Vorträge"
+            loading="lazy"
+            decoding="async"
+          />
+          <figcaption>
+            <span>Schreiben · Forschen · Sprechen</span>
+            <p>Gedanken werden wirksam, wenn sie präzise und verständlich geteilt werden.</p>
+          </figcaption>
+        </figure>
         <div className="publication-list" id="publication-list">
           {visiblePublications.map((publication) => (
             <PublicationRow
@@ -1207,11 +1234,23 @@ export default function App() {
             Sport als <em>zweite Sprache</em> für Verantwortung.
           </h2>
           <p>
-            Basketball begleitet mich seit vielen Jahren als Spieler,
-            Schiedsrichter, Coach und Organisator – ergänzt durch Tennis und
-            Kanusport.
+            Basketball begleitet mich fast mein Leben lang: als Spieler,
+            Schiedsrichter, Coach und Organisator. Auf dem Feld zählen für mich
+            Verantwortung, Teamgeist und Entscheidungen unter Druck.
           </p>
         </div>
+        <figure className="editorial-visual sports-visual">
+          <img
+            src="/editorial/basketball.webp"
+            alt="Basketball in Bewegung auf einem geschwungenen Hallenboden unter dem Korb"
+            loading="lazy"
+            decoding="async"
+          />
+          <figcaption>
+            <span>Seit 2005</span>
+            <p>Spiel lesen. Verantwortung übernehmen. Im Team wachsen.</p>
+          </figcaption>
+        </figure>
         <div className="sports-grid">
           {sportsMilestones.map((milestone, index) => (
             <article key={milestone.period + milestone.title}>
@@ -1258,14 +1297,6 @@ export default function App() {
               verhandlungssicherem Niveau sowie gute Französischkenntnisse.
             </p>
           </article>
-          <article>
-            <span className="facet-icon">↗</span>
-            <h3>Sport</h3>
-            <p>
-              NBBL- und Regionalligaerfahrung, Hochschulbasketball mit nationalen
-              Podestplätzen, Best-Coach-Auszeichnung und Schiedsrichter seit 2005.
-            </p>
-          </article>
         </div>
       </section>
 
@@ -1289,7 +1320,10 @@ export default function App() {
           <Arrow diagonal />
         </a>
         <div className="contact-signature-safe" aria-label="Persönliche Signaturmarke">
-          <div className="contact-monogram" aria-hidden="true">PG</div>
+          <div className="contact-monogram" aria-hidden="true">
+            <span className="signature-p">P</span>
+            <span className="signature-g">G</span>
+          </div>
           <span>Dr. med. Ass. iur. Philipp Graef, LL.M. (Medizinrecht)</span>
         </div>
       </section>
@@ -1300,7 +1334,7 @@ export default function App() {
           <p>
             Dr. med. Ass. iur. Philipp Graef, LL.M. (Medizinrecht)
             <br />
-            Arzt · Volljurist · Hochschullehrer · Unternehmer
+            Arzt · Hochschullehrer · Unternehmer
           </p>
         </div>
         <p className="footer-note">

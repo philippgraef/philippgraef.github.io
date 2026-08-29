@@ -152,11 +152,11 @@ const Impressum = () => (
       <section className="legal-card">
         <span className="legal-number">05</span>
         <p className="legal-kicker">Juristische Qualifikation</p>
-        <h2>Ass. iur. · Volljurist</h2>
+        <h2>Ass. iur.</h2>
         <p>
-          Die Bezeichnungen Ass. iur. und Volljurist dokumentieren den Abschluss
-          beider juristischer Staatsexamina. Dieses Angebot bezeichnet
-          den Diensteanbieter nicht als Rechtsanwalt und bietet keine
+          Die Bezeichnung Ass. iur. dokumentiert den Abschluss beider
+          juristischer Staatsexamina. Dieses Angebot bezeichnet den
+          Diensteanbieter nicht als Rechtsanwalt und bietet keine
           anwaltliche Tätigkeit an. Die BRAO und BORA werden deshalb nicht als
           Berufsordnungen dieses Internetangebots ausgewiesen.
         </p>

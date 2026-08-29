@@ -40,6 +40,9 @@ const publicAssets = [
   "/buch-gebaermuttertransplantation.webp",
   "/die-leisen-abstaende-cover.jpg",
   "/recht-medizinisch-cover.jpg",
+  "/editorial/medicine-law.webp",
+  "/editorial/knowledge.webp",
+  "/editorial/basketball.webp",
   "/og.png",
   "/favicon.svg",
   "/robots.txt"
