@@ -43,6 +43,9 @@ const publicAssets = [
   "/editorial/medicine-law.webp",
   "/editorial/knowledge.webp",
   "/editorial/basketball.webp",
+  "/editorial/project-impact.webp",
+  "/editorial/lecture-stage.webp",
+  "/editorial/connection.webp",
   "/og.png",
   "/favicon.svg",
   "/robots.txt"

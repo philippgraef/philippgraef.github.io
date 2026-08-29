@@ -551,7 +551,7 @@ export default function App() {
   useEffect(() => {
     const root = document.documentElement;
     const revealTargets = document.querySelectorAll<HTMLElement>(
-      ".section-label, .section-heading-row, .profile-lead, .editorial-visual, .field-card, .project-card, .venture-hero, .venture-offer, .library-card, .publication-row, .podcast-art, .podcast-copy, .podcast-episodes > a, .vita-intro, .timeline article, .education-panel, .talk-grid article, .sports-head, .sports-grid article, .facets-intro, .facet-grid article, .contact > *:not(.contact-shape)"
+      ".section-label, .section-heading-row, .profile-lead, .editorial-visual, .chapter-media, .field-card, .project-card, .venture-hero, .venture-offer, .library-card, .publication-row, .podcast-art, .podcast-copy, .podcast-episodes > a, .vita-intro, .vita-media, .timeline article, .education-panel, .talk-grid article, .sports-head, .sports-grid article, .facets-intro, .facets-media, .facet-grid article, .contact > *:not(.contact-shape):not(.contact-visual)"
     );
 
     root.classList.add("motion-ready");
@@ -810,22 +810,38 @@ export default function App() {
             Sport-Tech.
           </p>
         </div>
+        <figure className="chapter-media project-media">
+          <img
+            src="/editorial/project-impact.webp"
+            alt="Interdisziplinäre Forschungslandschaft aus Medizin, Wissenstransfer und Sportinnovation"
+            loading="lazy"
+            decoding="async"
+          />
+          <figcaption>
+            <span>Research in motion</span>
+            <p>Vier Felder. Ein gemeinsamer Anspruch: Erkenntnis in Wirkung übersetzen.</p>
+          </figcaption>
+          <div className="media-orbit" aria-hidden="true">01—04</div>
+        </figure>
         <div className="project-grid">
           {projects.map((project) => (
-            <article className="project-card" key={project.index}>
+            <a
+              className="project-card"
+              href={project.href}
+              target={project.href.startsWith("http") ? "_blank" : undefined}
+              rel={project.href.startsWith("http") ? "noreferrer" : undefined}
+              key={project.index}
+              aria-label={`${project.title}: ${project.link}`}
+            >
               <span className="project-index">{project.index}</span>
               <p className="project-meta">{project.meta}</p>
               <h3>{project.title}</h3>
               <p>{project.text}</p>
-              <a
-                href={project.href}
-                target={project.href.startsWith("http") ? "_blank" : undefined}
-                rel={project.href.startsWith("http") ? "noreferrer" : undefined}
-              >
+              <span className="project-cta">
                 {project.link}
                 <Arrow diagonal />
-              </a>
-            </article>
+              </span>
+            </a>
           ))}
         </div>
       </section>
@@ -901,7 +917,12 @@ export default function App() {
               target="_blank"
               rel="noreferrer"
               key={offer.href}
+              aria-label={`${offer.title}: Website öffnen`}
             >
+              <span className="venture-hit" aria-hidden="true">
+                <span>Öffnen</span>
+                <Arrow diagonal />
+              </span>
               <span className="venture-number">{offer.number}</span>
               <p className="venture-label">{offer.label}</p>
               <h3>{offer.title}</h3>
@@ -1081,9 +1102,9 @@ export default function App() {
             Mit Florian Schlepple
           </p>
           <div className="podcast-platforms" aria-label="Podcast-Plattformen">
-            {podcastPlatforms.map((platform, index) => (
+            {podcastPlatforms.map((platform) => (
               <a
-                className={index === 0 ? "button button-light" : "button button-podcast"}
+                className="button button-light"
                 href={platform.href}
                 target="_blank"
                 rel="noreferrer"
@@ -1097,13 +1118,22 @@ export default function App() {
         </div>
         <div className="podcast-episodes">
           {episodes.map((episode) => (
-            <a href={episode.href} target="_blank" rel="noreferrer" key={episode.number}>
+            <a
+              href={episode.href}
+              target="_blank"
+              rel="noreferrer"
+              key={episode.number}
+              aria-label={`${episode.title}: Folge öffnen`}
+            >
               <span>{episode.number}</span>
               <div>
                 <p>{episode.title}</p>
                 <small>{episode.meta}</small>
               </div>
-              <Arrow diagonal />
+              <span className="episode-action">
+                <small>Folge öffnen</small>
+                <Arrow diagonal />
+              </span>
             </a>
           ))}
         </div>
@@ -1122,6 +1152,15 @@ export default function App() {
               Ärztliche Praxis, juristische Ausbildung, akademische Lehre und
               Unternehmertum bilden die Grundlage meiner Arbeit.
             </p>
+            <figure className="vita-media">
+              <img
+                src="/philipp-graef-hd.webp"
+                alt="Philipp Graef"
+                loading="lazy"
+                decoding="async"
+              />
+              <figcaption>Medizin · Recht · Lehre</figcaption>
+            </figure>
             <div className="vita-stat">
               <strong>{careerMilestones.length}</strong>
               <span>berufliche und wissenschaftliche Stationen</span>
@@ -1202,6 +1241,19 @@ export default function App() {
             Fachpublikum, Gesundheitsberufe und Öffentlichkeit.
           </p>
         </div>
+        <figure className="chapter-media talks-media">
+          <img
+            src="/editorial/lecture-stage.webp"
+            alt="Geschwungener Vortragssaal mit Rednerpult, Buch und Mikrofon"
+            loading="lazy"
+            decoding="async"
+          />
+          <figcaption>
+            <span>Lecture notes</span>
+            <p>Komplexität ordnen. Wissen teilen. Diskussion ermöglichen.</p>
+          </figcaption>
+          <div className="media-orbit" aria-hidden="true">OPEN DIALOGUE</div>
+        </figure>
         <div className="talk-grid" id="talk-list">
           {visibleTalks.map((talk) => (
             <article key={talk.year + talk.title}>
@@ -1267,6 +1319,15 @@ export default function App() {
         <div className="facets-intro">
           <p className="kicker">Weitere Facetten</p>
           <h2 id="facets-title">Neugier, Ausdauer und Verbundenheit.</h2>
+          <figure className="facets-media">
+            <img
+              src="/editorial/connection.webp"
+              alt="Abstrakte geschwungene Formen als Sinnbild für Verbindung und Austausch"
+              loading="lazy"
+              decoding="async"
+            />
+            <figcaption>Was bleibt, ist Verbindung.</figcaption>
+          </figure>
         </div>
         <div className="facet-grid">
           <article>
@@ -1303,6 +1364,9 @@ export default function App() {
       <section className="contact section" id="kontakt">
         <div className="contact-shape contact-shape-one" aria-hidden="true" />
         <div className="contact-shape contact-shape-two" aria-hidden="true" />
+        <figure className="contact-visual" aria-hidden="true">
+          <img src="/editorial/connection.webp" alt="" loading="lazy" decoding="async" />
+        </figure>
         <p className="eyebrow light">
           <span />
           Kontakt
@@ -1320,11 +1384,12 @@ export default function App() {
           <Arrow diagonal />
         </a>
         <div className="contact-signature-safe" aria-label="Persönliche Signaturmarke">
-          <div className="contact-monogram" aria-hidden="true">
-            <span className="signature-p">P</span>
-            <span className="signature-g">G</span>
+          <div className="contact-signature-mark" aria-hidden="true">
+            <span className="signature-first">Philipp</span>
+            <span className="signature-last">Graef</span>
+            <i />
           </div>
-          <span>Dr. med. Ass. iur. Philipp Graef, LL.M. (Medizinrecht)</span>
+          <span className="signature-caption">Dr. med. Ass. iur. Philipp Graef, LL.M. (Medizinrecht)</span>
         </div>
       </section>
 
