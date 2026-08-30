@@ -1333,7 +1333,7 @@ a:hover .arrow, button:hover .arrow { transform: translate(3px,-2px); }
   position: relative;
   z-index: 2;
   display: grid;
-  width: min(100%,980px);
+  width: min(100%,780px);
   min-height: 330px;
   align-content: center;
   justify-items: center;
@@ -1341,40 +1341,57 @@ a:hover .arrow, button:hover .arrow { transform: translate(3px,-2px); }
   padding: 30px 30px 0;
   text-align: center;
 }
-.contact-signature-mark {
+.contact-monogram {
   position: relative;
   display: flex;
-  min-height: 170px;
-  align-items: baseline;
+  min-width: clamp(190px,27vw,330px);
+  align-items: flex-end;
   justify-content: center;
-  gap: .03em;
-  padding: 18px 46px 42px;
   color: var(--pink);
   font-family: "Segoe Script", "Snell Roundhand", "Lucida Handwriting", cursive;
-  font-size: clamp(70px,10vw,142px);
+  font-size: clamp(96px,13vw,164px);
   font-weight: 400;
-  letter-spacing: -.1em;
-  line-height: .95;
+  letter-spacing: -.3em;
+  line-height: .72;
   filter: drop-shadow(0 15px 22px rgba(0,0,0,.16));
-  transform: rotate(-4deg);
+  transform: rotate(-6deg);
 }
-.contact-signature-mark span { display: block; white-space: nowrap; }
-.contact-signature-mark .signature-first { transform: translateY(-10px) rotate(-2deg); }
-.contact-signature-mark .signature-last { color: #f8dfe8; transform: translateY(16px) rotate(2deg); }
-.contact-signature-mark i {
+.contact-monogram::after {
   position: absolute;
-  right: 2%;
-  bottom: 20px;
-  left: 4%;
-  height: 28px;
-  border-top: 3px solid currentColor;
-  border-radius: 50%;
-  transform: rotate(-4deg) skewX(-22deg);
+  right: -8%;
+  bottom: -20%;
+  left: -4%;
+  height: 34px;
+  border-bottom: 3px solid currentColor;
+  border-radius: 0 0 58% 48%;
+  content: "";
+  transform: rotate(-3deg) skewX(-20deg);
 }
-.signature-caption {
-  width: min(100%,760px);
-  margin-top: 30px;
-  padding-top: 18px;
+.contact-monogram::before {
+  position: absolute;
+  right: -5%;
+  bottom: -17%;
+  width: 22%;
+  height: 12px;
+  border-top: 2px solid currentColor;
+  border-radius: 50%;
+  content: "";
+  transform: rotate(9deg);
+}
+.contact-monogram span {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  color: inherit;
+  font: inherit;
+  letter-spacing: inherit;
+  text-transform: none;
+}
+.contact-monogram .signature-p { transform: translateY(-4%) rotate(-2deg); }
+.contact-monogram .signature-g { position: relative; z-index: 1; transform: translate(-8%,8%) rotate(4deg) scale(1.06); }
+.contact-signature-safe > span {
+  margin-top: 42px;
+  padding-top: 12px;
   border-top: 1px solid rgba(255,253,249,.32);
   color: rgba(255,253,249,.55);
   font-size: 8px;
@@ -1654,10 +1671,9 @@ footer { display: grid; grid-template-columns: 1fr 1fr auto; gap: 44px; align-it
   .contact-mail { font-size: 17px; }
   .contact { min-height: 980px; }
   .contact-visual { width: 100%; opacity: .36; -webkit-mask-image: linear-gradient(180deg,transparent 0,#000 32%,#000 100%); mask-image: linear-gradient(180deg,transparent 0,#000 32%,#000 100%); }
-  .contact-signature-safe { min-height: 390px; margin-top: 118px; padding-inline: 0; }
-  .contact-signature-mark { min-height: 230px; flex-direction: column; align-items: center; gap: 0; padding: 16px 10px 52px; font-size: clamp(58px,18vw,88px); }
-  .contact-signature-mark .signature-first, .contact-signature-mark .signature-last { transform: rotate(-3deg); }
-  .signature-caption { margin-top: 20px; }
+  .contact-signature-safe { min-height: 350px; margin-top: 110px; padding-inline: 0; }
+  .contact-monogram { min-width: min(72vw,260px); font-size: clamp(92px,30vw,132px); }
+  .contact-signature-safe > span { margin-top: 40px; }
   .sports-grid { grid-template-columns: 1fr; }
   footer { grid-template-columns: 1fr; }
   .footer-note { grid-column: auto; grid-row: auto; }

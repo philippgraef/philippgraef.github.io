@@ -678,7 +678,7 @@ export default function App() {
         <div className="hero-copy">
           <p className="eyebrow">
             <span />
-            Medizin · Recht · Lehre · Innovation
+            Medizin · Recht · Lehre · Forschung · Innovation
           </p>
           <h1>
             <span>Medizin</span>
@@ -1159,7 +1159,7 @@ export default function App() {
                 loading="lazy"
                 decoding="async"
               />
-              <figcaption>Medizin · Recht · Lehre</figcaption>
+              <figcaption>Medizin · Recht · Lehre · Forschung · Innovation</figcaption>
             </figure>
             <div className="vita-stat">
               <strong>{careerMilestones.length}</strong>
@@ -1384,12 +1384,11 @@ export default function App() {
           <Arrow diagonal />
         </a>
         <div className="contact-signature-safe" aria-label="Persönliche Signaturmarke">
-          <div className="contact-signature-mark" aria-hidden="true">
-            <span className="signature-first">Philipp</span>
-            <span className="signature-last">Graef</span>
-            <i />
+          <div className="contact-monogram" aria-hidden="true">
+            <span className="signature-p">P</span>
+            <span className="signature-g">G</span>
           </div>
-          <span className="signature-caption">Dr. med. Ass. iur. Philipp Graef, LL.M. (Medizinrecht)</span>
+          <span>Dr. med. Ass. iur. Philipp Graef, LL.M. (Medizinrecht)</span>
         </div>
       </section>
 
