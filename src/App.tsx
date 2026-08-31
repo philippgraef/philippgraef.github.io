@@ -378,21 +378,65 @@ const episodes = [
 const podcastPlatforms = [
   {
     label: "Spotify",
-    href: "https://open.spotify.com/show/7aowMbc68QlEwd0K4x5OT8"
+    href: "https://open.spotify.com/show/7aowMbc68QlEwd0K4x5OT8",
+    icon: "spotify"
   },
   {
     label: "Apple Podcasts",
-    href: "https://podcasts.apple.com/de/podcast/recht-medizinisch/id1896818482"
+    href: "https://podcasts.apple.com/de/podcast/recht-medizinisch/id1896818482",
+    icon: "apple"
   },
   {
     label: "Amazon Music",
-    href: "https://music.amazon.de/podcasts/9870b74b-c54d-4fae-b5b9-0c9e7728a2ad/recht-medizinisch"
+    href: "https://music.amazon.de/podcasts/9870b74b-c54d-4fae-b5b9-0c9e7728a2ad/recht-medizinisch",
+    icon: "amazon"
   },
   {
     label: "Podcast-Website",
-    href: "https://pg-rechtmedizinisch.github.io/"
+    href: "https://pg-rechtmedizinisch.github.io/",
+    icon: "website"
   }
-];
+] as const;
+
+function PodcastPlatformIcon({ name }: { name: (typeof podcastPlatforms)[number]["icon"] }) {
+  if (name === "spotify") {
+    return (
+      <svg className="platform-icon platform-icon-spotify" viewBox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="11" fill="currentColor" />
+        <path d="M6.4 9.1c3.8-1.1 7.9-.8 11.2.8M7.1 12.2c3.2-.8 6.8-.5 9.7.8M7.8 15.1c2.7-.6 5.5-.3 8 .7" fill="none" stroke="#fff" strokeLinecap="round" strokeWidth="1.55" />
+      </svg>
+    );
+  }
+
+  if (name === "apple") {
+    return (
+      <svg className="platform-icon platform-icon-apple" viewBox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="11" fill="currentColor" />
+        <circle cx="12" cy="10.2" r="2.15" fill="#fff" />
+        <path d="M9.9 14.1a3 3 0 0 1 4.2 0l-1 5.1h-2.2l-1-5.1Z" fill="#fff" />
+        <path d="M7.8 15.3a6.3 6.3 0 1 1 8.4 0M5.7 17.2a9 9 0 1 1 12.6 0" fill="none" stroke="#fff" strokeLinecap="round" strokeWidth="1.35" />
+      </svg>
+    );
+  }
+
+  if (name === "amazon") {
+    return (
+      <svg className="platform-icon platform-icon-amazon" viewBox="0 0 24 24" aria-hidden="true">
+        <rect width="24" height="24" rx="6" fill="currentColor" />
+        <path d="M6.1 7.4h1.7v6.1H6.1zm3.4-1.5h1.7v7.6H9.5zm3.4 3h1.7v4.6h-1.7zm3.4-2.1H18v6.7h-1.7z" fill="#fff" />
+        <path d="M6.2 16.5c3.2 2.1 7.3 2.3 11.3.3" fill="none" stroke="#fff" strokeLinecap="round" strokeWidth="1.45" />
+        <path d="m15.9 16.2 1.8.5-.5 1.6" fill="none" stroke="#fff" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.25" />
+      </svg>
+    );
+  }
+
+  return (
+    <svg className="platform-icon platform-icon-website" viewBox="0 0 24 24" aria-hidden="true">
+      <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" strokeWidth="1.7" />
+      <path d="M2.7 12h18.6M12 2c3 2.8 4.4 6.1 4.4 10S15 19.2 12 22C9 19.2 7.6 15.9 7.6 12S9 4.8 12 2Z" fill="none" stroke="currentColor" strokeWidth="1.45" />
+    </svg>
+  );
+}
 
 const sportsMilestones = [
   {
@@ -1111,7 +1155,7 @@ export default function App() {
                 key={platform.href}
               >
                 {platform.label}
-                <Arrow diagonal />
+                <PodcastPlatformIcon name={platform.icon} />
               </a>
             ))}
           </div>
@@ -1384,9 +1428,10 @@ export default function App() {
           <Arrow diagonal />
         </a>
         <div className="contact-signature-safe" aria-label="Persönliche Signaturmarke">
-          <div className="contact-monogram" aria-hidden="true">
-            <span className="signature-p">P</span>
-            <span className="signature-g">G</span>
+          <div className="contact-signature-wordmark" aria-hidden="true">
+            <span className="signature-name"><b>P</b>hilipp</span>
+            <span className="signature-name signature-surname"><b>G</b>raef</span>
+            <i className="signature-flourish" />
           </div>
           <span>Dr. med. Ass. iur. Philipp Graef, LL.M. (Medizinrecht)</span>
         </div>

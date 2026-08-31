@@ -1090,6 +1090,18 @@ a:hover .arrow, button:hover .arrow { transform: translate(3px,-2px); }
 }
 .podcast-hosts { margin-bottom: 32px; color: var(--pink); font-size: 9px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
 .podcast-platforms { display: flex; flex-wrap: wrap; gap: 10px; }
+.podcast-platforms .button { gap: 11px; padding-right: 13px; }
+.platform-icon {
+  flex: 0 0 auto;
+  width: 23px;
+  height: 23px;
+  transition: transform 280ms cubic-bezier(.2,.8,.2,1),filter 280ms ease;
+}
+.platform-icon-spotify { color: #1ed760; }
+.platform-icon-apple { color: #9a43d7; }
+.platform-icon-amazon { color: #2596be; }
+.platform-icon-website { color: var(--berry); }
+.podcast-platforms .button:hover .platform-icon { filter: saturate(1.18); transform: translateX(2px) rotate(3deg) scale(1.08); }
 .podcast-episodes {
   grid-column: 1 / -1;
   display: grid;
@@ -1341,54 +1353,76 @@ a:hover .arrow, button:hover .arrow { transform: translate(3px,-2px); }
   padding: 30px 30px 0;
   text-align: center;
 }
-.contact-monogram {
+.contact-signature-wordmark {
   position: relative;
   display: flex;
-  min-width: clamp(190px,27vw,330px);
-  align-items: flex-end;
+  min-height: 190px;
+  align-items: baseline;
   justify-content: center;
+  gap: clamp(4px,1vw,14px);
+  padding: 20px 42px 55px;
   color: var(--pink);
-  font-family: "Segoe Script", "Snell Roundhand", "Lucida Handwriting", cursive;
-  font-size: clamp(96px,13vw,164px);
+  font-family: "Kunstler Script", "Edwardian Script ITC", "Monotype Corsiva", "Segoe Script", "Snell Roundhand", cursive;
+  font-size: clamp(72px,9.3vw,136px);
   font-weight: 400;
-  letter-spacing: -.3em;
-  line-height: .72;
+  letter-spacing: -.075em;
+  line-height: .88;
   filter: drop-shadow(0 15px 22px rgba(0,0,0,.16));
-  transform: rotate(-6deg);
+  transform: rotate(-4deg);
 }
-.contact-monogram::after {
+.contact-signature-wordmark::before {
   position: absolute;
-  right: -8%;
-  bottom: -20%;
-  left: -4%;
-  height: 34px;
-  border-bottom: 3px solid currentColor;
-  border-radius: 0 0 58% 48%;
-  content: "";
-  transform: rotate(-3deg) skewX(-20deg);
-}
-.contact-monogram::before {
-  position: absolute;
-  right: -5%;
-  bottom: -17%;
-  width: 22%;
-  height: 12px;
+  top: 15%;
+  left: 2%;
+  width: 20%;
+  height: 40%;
   border-top: 2px solid currentColor;
   border-radius: 50%;
   content: "";
-  transform: rotate(9deg);
+  opacity: .7;
+  transform: rotate(-23deg) skewX(-18deg);
 }
-.contact-monogram span {
+.contact-signature-wordmark::after {
+  position: absolute;
+  right: 1%;
+  bottom: 37px;
+  left: 3%;
+  height: 27px;
+  border-top: 2px solid currentColor;
+  border-radius: 50%;
+  content: "";
+  transform: rotate(-4deg) skewX(-24deg);
+}
+.contact-signature-wordmark .signature-name {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: baseline;
   margin: 0;
   padding: 0;
-  border: 0;
-  color: inherit;
-  font: inherit;
-  letter-spacing: inherit;
-  text-transform: none;
+  white-space: nowrap;
 }
-.contact-monogram .signature-p { transform: translateY(-4%) rotate(-2deg); }
-.contact-monogram .signature-g { position: relative; z-index: 1; transform: translate(-8%,8%) rotate(4deg) scale(1.06); }
+.contact-signature-wordmark .signature-name b {
+  display: inline-block;
+  margin-right: -.08em;
+  font: inherit;
+  font-size: 1.22em;
+  font-weight: 400;
+  line-height: .7;
+  transform: rotate(-3deg);
+}
+.contact-signature-wordmark .signature-surname { color: #f8dfe8; transform: translateY(.16em) rotate(2deg); }
+.contact-signature-wordmark .signature-surname b { transform: translateY(.03em) rotate(4deg) scale(1.04); }
+.signature-flourish {
+  position: absolute;
+  right: 4%;
+  bottom: 26px;
+  left: 8%;
+  height: 20px;
+  border-bottom: 3px solid currentColor;
+  border-radius: 0 0 58% 45%;
+  transform: rotate(-2deg) skewX(-20deg);
+}
 .contact-signature-safe > span {
   margin-top: 42px;
   padding-top: 12px;
@@ -1672,7 +1706,8 @@ footer { display: grid; grid-template-columns: 1fr 1fr auto; gap: 44px; align-it
   .contact { min-height: 980px; }
   .contact-visual { width: 100%; opacity: .36; -webkit-mask-image: linear-gradient(180deg,transparent 0,#000 32%,#000 100%); mask-image: linear-gradient(180deg,transparent 0,#000 32%,#000 100%); }
   .contact-signature-safe { min-height: 350px; margin-top: 110px; padding-inline: 0; }
-  .contact-monogram { min-width: min(72vw,260px); font-size: clamp(92px,30vw,132px); }
+  .contact-signature-wordmark { min-height: 260px; flex-direction: column; align-items: center; gap: 0; padding: 20px 8px 62px; font-size: clamp(65px,20vw,96px); }
+  .contact-signature-wordmark .signature-surname { transform: translateY(-.02em) rotate(2deg); }
   .contact-signature-safe > span { margin-top: 40px; }
   .sports-grid { grid-template-columns: 1fr; }
   footer { grid-template-columns: 1fr; }
