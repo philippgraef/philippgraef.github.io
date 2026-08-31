@@ -1356,11 +1356,11 @@ a:hover .arrow, button:hover .arrow { transform: translate(3px,-2px); }
 .contact-signature-wordmark {
   position: relative;
   display: flex;
-  min-height: 190px;
+  min-height: 150px;
   align-items: baseline;
   justify-content: center;
   gap: clamp(4px,1vw,14px);
-  padding: 20px 42px 55px;
+  padding: 20px 42px 10px;
   color: var(--pink);
   font-family: "Kunstler Script", "Edwardian Script ITC", "Monotype Corsiva", "Segoe Script", "Snell Roundhand", cursive;
   font-size: clamp(72px,9.3vw,136px);
@@ -1369,29 +1369,6 @@ a:hover .arrow, button:hover .arrow { transform: translate(3px,-2px); }
   line-height: .88;
   filter: drop-shadow(0 15px 22px rgba(0,0,0,.16));
   transform: rotate(-4deg);
-}
-.contact-signature-wordmark::before {
-  position: absolute;
-  top: 15%;
-  left: 2%;
-  width: 20%;
-  height: 40%;
-  border-top: 2px solid currentColor;
-  border-radius: 50%;
-  content: "";
-  opacity: .7;
-  transform: rotate(-23deg) skewX(-18deg);
-}
-.contact-signature-wordmark::after {
-  position: absolute;
-  right: 1%;
-  bottom: 37px;
-  left: 3%;
-  height: 27px;
-  border-top: 2px solid currentColor;
-  border-radius: 50%;
-  content: "";
-  transform: rotate(-4deg) skewX(-24deg);
 }
 .contact-signature-wordmark .signature-name {
   position: relative;
@@ -1413,18 +1390,8 @@ a:hover .arrow, button:hover .arrow { transform: translate(3px,-2px); }
 }
 .contact-signature-wordmark .signature-surname { color: #f8dfe8; transform: translateY(.16em) rotate(2deg); }
 .contact-signature-wordmark .signature-surname b { transform: translateY(.03em) rotate(4deg) scale(1.04); }
-.signature-flourish {
-  position: absolute;
-  right: 4%;
-  bottom: 26px;
-  left: 8%;
-  height: 20px;
-  border-bottom: 3px solid currentColor;
-  border-radius: 0 0 58% 45%;
-  transform: rotate(-2deg) skewX(-20deg);
-}
 .contact-signature-safe > span {
-  margin-top: 42px;
+  margin-top: 12px;
   padding-top: 12px;
   border-top: 1px solid rgba(255,253,249,.32);
   color: rgba(255,253,249,.55);
@@ -1706,9 +1673,9 @@ footer { display: grid; grid-template-columns: 1fr 1fr auto; gap: 44px; align-it
   .contact { min-height: 980px; }
   .contact-visual { width: 100%; opacity: .36; -webkit-mask-image: linear-gradient(180deg,transparent 0,#000 32%,#000 100%); mask-image: linear-gradient(180deg,transparent 0,#000 32%,#000 100%); }
   .contact-signature-safe { min-height: 350px; margin-top: 110px; padding-inline: 0; }
-  .contact-signature-wordmark { min-height: 260px; flex-direction: column; align-items: center; gap: 0; padding: 20px 8px 62px; font-size: clamp(65px,20vw,96px); }
+  .contact-signature-wordmark { min-height: 185px; flex-direction: column; align-items: center; gap: 0; padding: 16px 8px 10px; font-size: clamp(65px,20vw,96px); }
   .contact-signature-wordmark .signature-surname { transform: translateY(-.02em) rotate(2deg); }
-  .contact-signature-safe > span { margin-top: 40px; }
+  .contact-signature-safe > span { margin-top: 14px; }
   .sports-grid { grid-template-columns: 1fr; }
   footer { grid-template-columns: 1fr; }
   .footer-note { grid-column: auto; grid-row: auto; }

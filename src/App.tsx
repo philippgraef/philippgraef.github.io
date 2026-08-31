@@ -1431,7 +1431,6 @@ export default function App() {
           <div className="contact-signature-wordmark" aria-hidden="true">
             <span className="signature-name"><b>P</b>hilipp</span>
             <span className="signature-name signature-surname"><b>G</b>raef</span>
-            <i className="signature-flourish" />
           </div>
           <span>Dr. med. Ass. iur. Philipp Graef, LL.M. (Medizinrecht)</span>
         </div>
