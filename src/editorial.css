@@ -185,13 +185,15 @@ main { position: relative; z-index: 1; }
 .header-contact:hover { color: var(--ink); background: var(--pink); }
 .arrow {
   display: inline-grid;
+  flex-shrink: 0;
   min-width: 1.1em;
   place-items: center;
-  font-family: Arial, sans-serif;
   font-size: 1.2em;
   line-height: 1;
+  vertical-align: middle;
   transition: transform 220ms ease;
 }
+.arrow svg { display: block; width: 1em; height: 1em; }
 a:hover .arrow, button:hover .arrow { transform: translate(3px,-2px); }
 .menu-toggle {
   display: none;
@@ -399,6 +401,7 @@ a:hover .arrow, button:hover .arrow { transform: translate(3px,-2px); }
   bottom: auto;
   left: auto;
   display: grid;
+  width: max-content;
   min-width: 170px;
   gap: 3px;
   padding: 18px 20px;
@@ -416,7 +419,7 @@ a:hover .arrow, button:hover .arrow { transform: translate(3px,-2px); }
   letter-spacing: .16em;
   text-transform: uppercase;
 }
-.portrait-caption span { font-family: var(--serif); font-size: 18px; }
+.portrait-caption span { font-family: var(--serif); font-size: 18px; white-space: nowrap; }
 .hero-note {
   position: absolute;
   z-index: 5;
@@ -501,15 +504,6 @@ a:hover .arrow, button:hover .arrow { transform: translate(3px,-2px); }
 .section-label p { margin: 0; font-size: 9px; font-weight: 800; letter-spacing: .2em; text-transform: uppercase; }
 .kicker, .library-type { margin-bottom: 19px; color: var(--berry); }
 .profile { background: var(--paper-soft); }
-.profile::after {
-  position: absolute;
-  top: 0;
-  right: clamp(24px,6vw,96px);
-  width: 1px;
-  height: 100%;
-  background: var(--line);
-  content: "";
-}
 .profile-lead {
   display: grid;
   grid-template-columns: minmax(0,1.35fr) minmax(280px,.65fr);

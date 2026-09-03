@@ -1,9 +1,37 @@
 import { useEffect, useState } from "react";
 import { LegalPage } from "./LegalPages";
 
-const Arrow = ({ diagonal = false }: { diagonal?: boolean }) => (
+const Arrow = ({
+  diagonal = false,
+  direction = "right"
+}: {
+  diagonal?: boolean;
+  direction?: "right" | "up" | "down";
+}) => (
   <span className="arrow" aria-hidden="true">
-    {diagonal ? "↗" : "→"}
+    <svg
+      viewBox="0 0 24 24"
+      width="24"
+      height="24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.6"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      focusable="false"
+    >
+      <path
+        d={
+          diagonal
+            ? "M5 19 19 5M5 5h14v14"
+            : direction === "up"
+              ? "M12 20V4m-7 7 7-7 7 7"
+              : direction === "down"
+                ? "M12 4v16m-7-7 7 7 7-7"
+                : "M4 12h16m-7-7 7 7-7 7"
+        }
+      />
+    </svg>
   </span>
 );
 
@@ -766,8 +794,7 @@ export default function App() {
           </div>
           <div className="portrait-caption">
             <small>Perspektive</small>
-            <span>Arzt</span>
-            <span>× Volljurist</span>
+            <span>Arzt × Volljurist</span>
           </div>
           <div className="hero-note">
             <span>Dr. med. · Ass. iur. · LL.M.</span>
@@ -776,7 +803,7 @@ export default function App() {
         </div>
 
         <div className="scroll-note" aria-hidden="true">
-          Scroll to explore <span>↓</span>
+          Scroll to explore <Arrow direction="down" />
         </div>
       </section>
 
@@ -1453,7 +1480,7 @@ export default function App() {
           <div className="footer-legal">
             <a href="/impressum">Impressum</a>
             <a href="/datenschutz">Datenschutz</a>
-            <a href="#top">Nach oben ↑</a>
+            <a href="#top">Nach oben <Arrow direction="up" /></a>
           </div>
           <span>© {new Date().getFullYear()} Dr. med. Ass. iur. Philipp Graef, LL.M. (Medizinrecht)</span>
         </div>
