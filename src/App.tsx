@@ -1370,7 +1370,7 @@ export default function App() {
             decoding="async"
           />
           <figcaption>
-            <span>Seit 2005</span>
+            <span>Seit 1998</span>
             <p>Spiel lesen. Verantwortung übernehmen. Im Team wachsen.</p>
           </figcaption>
         </figure>
