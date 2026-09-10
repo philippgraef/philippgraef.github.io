@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { LegalPage } from "./LegalPages";
+import { SiteFooter } from "./SiteFooter";
+import { SiteHeader } from "./SiteHeader";
 
 const Arrow = ({
   diagonal = false,
@@ -515,7 +517,7 @@ const projects = [
     meta: "Promotion · Universität Leipzig",
     title: "Verfassungsrecht & Transplantationsmedizin",
     text: "Rechtswissenschaftliche Forschung zur verfassungsrechtlichen Tragfähigkeit des § 8 Abs. 1 Satz 2 TPG.",
-    href: "#vita",
+    href: "/vita/",
     link: "Mehr zur Vita"
   },
   {
@@ -539,8 +541,16 @@ const projects = [
     meta: "Entrepreneurship · Save Order Safe",
     title: "Mehr Sport. Weniger Leerstand.",
     text: "Als Mitgründer und COO entwickle ich eine Plattform, die kurzfristig frei werdende Sportbuchungen wieder verfügbar macht.",
-    href: "#save-order-safe",
+    href: "/save-order-safe/",
     link: "Zum Venture Spotlight"
+  },
+  {
+    index: "05",
+    meta: "App-Entwicklung · PG Apps",
+    title: "Von der Idee zum digitalen Produkt",
+    text: "Eigenständig entwickelte Apps an den Schnittstellen von Medizin, Recht, Lernen und Alltag.",
+    href: "#apps",
+    link: "Zum Digital Studio"
   }
 ];
 
@@ -550,7 +560,9 @@ const qualifications = [
   "LL.M. Medizinrecht",
   "Hochschullehrer",
   "Autor",
-  "Unternehmer"
+  "Unternehmer",
+  "App-Entwickler",
+  "Pionier"
 ];
 
 const saveOrderSafeOffers = [
@@ -618,7 +630,23 @@ export default function App() {
   const [showAllCareer, setShowAllCareer] = useState(false);
   const [showEducation, setShowEducation] = useState(false);
   const [showAllTalks, setShowAllTalks] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
+  const currentPath = window.location.pathname.replace(/\/+$/, "") || "/";
+
+  useEffect(() => {
+    const titles: Record<string, string> = {
+      "/": "Dr. med. Ass. iur. Philipp Graef, LL.M. (Medizinrecht) | Medizin · Recht · Innovation",
+      "/profil": "Profil | Philipp Graef",
+      "/projekte": "Projekte & Apps | Philipp Graef",
+      "/buecher": "Bücher | Philipp Graef",
+      "/save-order-safe": "Save Order Safe | Philipp Graef",
+      "/publikationen": "Publikationen & Podcast | Philipp Graef",
+      "/vita": "Vita | Philipp Graef",
+      "/sport": "Sport | Philipp Graef",
+      "/kontakt": "Kontakt | Philipp Graef"
+    };
+
+    if (titles[currentPath]) document.title = titles[currentPath];
+  }, [currentPath]);
 
   useEffect(() => {
     const root = document.documentElement;
@@ -675,13 +703,26 @@ export default function App() {
     };
   }, []);
 
-  const legalPath = window.location.pathname.replace(/\/+$/, "") || "/";
-  if (legalPath === "/impressum") {
+  if (currentPath === "/impressum") {
     return <LegalPage kind="impressum" />;
   }
-  if (legalPath === "/datenschutz") {
+  if (currentPath === "/datenschutz") {
     return <LegalPage kind="datenschutz" />;
   }
+
+  const knownPaths = new Set([
+    "/",
+    "/profil",
+    "/projekte",
+    "/buecher",
+    "/save-order-safe",
+    "/publikationen",
+    "/vita",
+    "/sport",
+    "/kontakt"
+  ]);
+  const isHome = currentPath === "/";
+  const isKnownPage = knownPaths.has(currentPath);
 
   const visiblePublications = showAllPublications
     ? publications
@@ -692,53 +733,22 @@ export default function App() {
   const visibleTalks = showAllTalks ? talks : talks.slice(0, 4);
 
   return (
-    <main>
-      <div className="site-intro" aria-hidden="true">
-        <img className="intro-mark" src="/favicon.svg" alt="" />
-        <p>Medizin × Recht</p>
-      </div>
+    <main id="top" className={isHome ? "home-page" : "subpage"}>
+      {isHome && (
+        <div className="site-intro" aria-hidden="true">
+          <img className="intro-mark" src="/favicon.svg" alt="" />
+          <p>Medizin × Recht</p>
+        </div>
+      )}
       <div className="pointer-aura" aria-hidden="true" />
       <div className="page-progress" aria-hidden="true">
         <span />
       </div>
-      <header className="site-header">
-        <a className="brand" href="#top" aria-label="Zur Startseite">
-          <img className="brand-mark" src="/favicon.svg" alt="" />
-          <span className="brand-name">
-            Dr. med. Ass. iur. Philipp Graef, LL.M. (Medizinrecht)
-            <small>Medizin × Recht</small>
-          </span>
-        </a>
-        <nav
-          className={menuOpen ? "is-open" : ""}
-          aria-label="Hauptnavigation"
-          onClick={() => setMenuOpen(false)}
-        >
-          <a href="#profil">Profil</a>
-          <a href="#projekte">Projekte</a>
-          <a href="#buecher">Bücher</a>
-          <a href="#save-order-safe">SOS</a>
-          <a href="#publikationen">Publikationen</a>
-          <a href="#vita">Vita</a>
-          <a href="#sport">Sport</a>
-        </nav>
-        <a className="header-contact" href="#kontakt">
-          Kontakt
-          <Arrow diagonal />
-        </a>
-        <button
-          className="menu-toggle"
-          type="button"
-          aria-label={menuOpen ? "Menü schließen" : "Menü öffnen"}
-          aria-expanded={menuOpen}
-          onClick={() => setMenuOpen((current) => !current)}
-        >
-          <span />
-          <span />
-        </button>
-      </header>
+      <SiteHeader />
 
-      <section className="hero" id="top">
+      {isHome && (
+        <>
+      <section className="hero" aria-labelledby="home-title">
         <div className="hero-grid" aria-hidden="true" />
         <p className="hero-edition" aria-hidden="true">
           Portfolio / 2026
@@ -752,7 +762,7 @@ export default function App() {
             <span />
             Medizin · Recht · Lehre · Forschung · Innovation
           </p>
-          <h1>
+          <h1 id="home-title">
             <span>Medizin</span>
             <span className="hero-line-understanding"><em>verstehen.</em></span>
             <span className="hero-line-law"><strong>Recht</strong> <em>einordnen.</em></span>
@@ -764,11 +774,11 @@ export default function App() {
             und unternehmerischer Innovation.
           </p>
           <div className="hero-actions">
-            <a className="button button-primary" href="#profil">
+            <a className="button button-primary" href="/profil/">
               Profil entdecken
               <Arrow />
             </a>
-            <a className="button button-secondary" href="#projekte">
+            <a className="button button-secondary" href="/projekte/">
               Aktuelle Projekte
               <Arrow />
             </a>
@@ -784,10 +794,10 @@ export default function App() {
           <div className="portrait-index" aria-hidden="true">01</div>
           <div className="portrait-panel">
             <img
-              src="/philipp-graef-hd.webp"
+              src="/philipp-graef-original.jpg"
               alt="Dr. med. Ass. iur. Philipp Graef, LL.M. (Medizinrecht)"
-              width={1116}
-              height={1409}
+              width={560}
+              height={708}
               decoding="async"
               fetchPriority="high"
             />
@@ -801,10 +811,6 @@ export default function App() {
             <p>Zwei Disziplinen. Ein Blick fürs Ganze.</p>
           </div>
         </div>
-
-        <div className="scroll-note" aria-hidden="true">
-          Scroll to explore <Arrow direction="down" />
-        </div>
       </section>
 
       <section className="qualification-marquee" aria-label={qualifications.join(", ")}>
@@ -817,8 +823,11 @@ export default function App() {
           ))}
         </div>
       </section>
+        </>
+      )}
 
-      <section className="profile section" id="profil">
+      {currentPath === "/profil" && (
+      <section className="profile section subpage-first" id="profil">
         <div className="section-label">
           <span>01</span>
           <p>Profil</p>
@@ -865,8 +874,11 @@ export default function App() {
           ))}
         </div>
       </section>
+      )}
 
-      <section className="projects section" id="projekte">
+      {currentPath === "/projekte" && (
+      <>
+      <section className="projects section subpage-first" id="projekte">
         <div className="section-label light-label">
           <span>02</span>
           <p>Aktuelle Projekte</p>
@@ -877,8 +889,8 @@ export default function App() {
             <h2>Ideen mit Wirkung – in Forschung und Praxis.</h2>
           </div>
           <p>
-            Von Transplantationsrecht über Arbeitsforschung bis zu Podcast und
-            Sport-Tech.
+            Von Transplantationsrecht über Arbeitsforschung bis zu Podcast,
+            Sport-Tech und App-Entwicklung.
           </p>
         </div>
         <figure className="chapter-media project-media">
@@ -890,9 +902,9 @@ export default function App() {
           />
           <figcaption>
             <span>Research in motion</span>
-            <p>Vier Felder. Ein gemeinsamer Anspruch: Erkenntnis in Wirkung übersetzen.</p>
+            <p>Fünf Felder. Ein gemeinsamer Anspruch: Erkenntnis in Wirkung übersetzen.</p>
           </figcaption>
-          <div className="media-orbit" aria-hidden="true">01—04</div>
+          <div className="media-orbit" aria-hidden="true">01—05</div>
         </figure>
         <div className="project-grid">
           {projects.map((project) => (
@@ -917,8 +929,64 @@ export default function App() {
         </div>
       </section>
 
+      <section className="apps-studio section" id="apps" aria-labelledby="apps-title">
+        <div className="apps-studio-copy">
+          <p className="eyebrow light">
+            <span />
+            Konzeption · UX/UI · Entwicklung
+          </p>
+          <h2 id="apps-title">
+            Apps entwickeln. Wissen <em>zugänglich</em> machen.
+          </h2>
+          <p>
+            Unter PG Apps entstehen eigenständig entwickelte digitale Produkte
+            an den Schnittstellen von Medizin, Recht, Lernen und Alltag – von
+            der Idee über Interface und technische Umsetzung bis zur
+            Veröffentlichung.
+          </p>
+          <a
+            className="button button-light"
+            href="https://pg-apps.github.io/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            PG Apps entdecken <Arrow diagonal />
+          </a>
+        </div>
+        <div className="apps-studio-visual" aria-label="Visualisierung des App-Entwicklungsprozesses">
+          <div className="app-phone app-phone-back" aria-hidden="true">
+            <span />
+            <strong>RLY?</strong>
+            <i />
+            <i />
+          </div>
+          <div className="app-phone app-phone-front" aria-hidden="true">
+            <span />
+            <small>PG APPS</small>
+            <strong>IDEA<br />TO<br />IMPACT</strong>
+            <i />
+          </div>
+          <div className="apps-code-card" aria-hidden="true">
+            <span>01</span><b>PRODUCT</b>
+            <span>02</span><b>DESIGN</b>
+            <span>03</span><b>CODE</b>
+            <span>04</span><b>RELEASE</b>
+          </div>
+          <div className="apps-tags" aria-hidden="true">
+            <span>Produktidee</span>
+            <span>UX/UI</span>
+            <span>iOS</span>
+            <span>Web</span>
+            <span>Release</span>
+          </div>
+        </div>
+      </section>
+      </>
+      )}
+
+      {currentPath === "/save-order-safe" && (
       <section
-        className="venture section"
+        className="venture section subpage-first"
         id="save-order-safe"
         aria-labelledby="venture-title"
       >
@@ -980,6 +1048,29 @@ export default function App() {
             </div>
           </div>
         </div>
+        <a
+          className="venture-app-launch"
+          href="https://apps.apple.com/de/app/save-order-safe/id6787904824"
+          target="_blank"
+          rel="noreferrer"
+          aria-label="Save Order Safe im Apple App Store ansehen"
+        >
+          <div className="venture-app-icon" aria-hidden="true">
+            <span>SOS</span>
+          </div>
+          <div>
+            <p className="venture-label">Neu im App Store</p>
+            <h3>Save Order Safe für iPhone & iPad</h3>
+            <p>
+              Kurzfristig verfügbare Plätze für Padel, Tennis, Squash,
+              Badminton und Pickleball entdecken oder eigene Buchungen
+              weitergeben.
+            </p>
+          </div>
+          <span className="venture-app-cta">
+            Im App Store ansehen <Arrow diagonal />
+          </span>
+        </a>
         <div className="venture-offers">
           {saveOrderSafeOffers.map((offer) => (
             <a
@@ -1006,20 +1097,60 @@ export default function App() {
           ))}
         </div>
       </section>
+      )}
 
-      <section className="library section" id="buecher" aria-labelledby="library-title">
+      {currentPath === "/buecher" && (
+      <section className="library section subpage-first" id="buecher" aria-labelledby="library-title">
         <div className="section-label">
           <span>03</span>
           <p>Bücher</p>
         </div>
         <div className="library-head">
-          <p className="kicker">Zwei Bücher · zwei Perspektiven</p>
+          <p className="kicker">Drei Bücher · drei Perspektiven</p>
           <h2 id="library-title">
-            Vom präzisen Argument bis zu dem, was <em>unausgesprochen</em> bleibt.
+            Vom präzisen Argument über kindgerechtes Erklären bis zu dem, was
+            <em> unausgesprochen</em> bleibt.
           </h2>
         </div>
 
         <div className="library-grid">
+          <article className="library-card library-card-children">
+            <div className="library-cover">
+              <span className="library-orbit" aria-hidden="true" />
+              <img
+                src="/gesundheit-verstehen-kajo-cover.jpg"
+                alt="Buchcover: Gesundheit verstehen mit Kajo – Meine Zeit in der KJPP"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <div className="library-copy">
+              <p className="library-type">Kindergesundheit · Kindle · 2026</p>
+              <h3>Gesundheit verstehen mit Kajo</h3>
+              <p className="library-subtitle">
+                Meine Zeit in der KJPP · Ein Buch für Kinder und ihre Familien
+              </p>
+              <p>
+                Ein einfühlsamer, verständlicher Begleiter, der Kindern und
+                Familien Orientierung rund um den Aufenthalt in der Kinder- und
+                Jugendpsychiatrie gibt.
+              </p>
+              <dl className="book-meta">
+                <div><dt>Lesealter</dt><dd>6–12 Jahre</dd></div>
+                <div><dt>Reihe</dt><dd>Gesundheit verstehen</dd></div>
+                <div><dt>Taschenbuch</dt><dd>In Vorbereitung</dd></div>
+              </dl>
+              <a
+                className="button button-ink"
+                href="https://www.amazon.de/dp/B0HHY679RQ"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Kindle bei Amazon <Arrow diagonal />
+              </a>
+            </div>
+          </article>
+
           <article className="library-card library-card-literary">
             <div className="library-cover">
               <span className="library-orbit" aria-hidden="true" />
@@ -1097,8 +1228,11 @@ export default function App() {
           </article>
         </div>
       </section>
+      )}
 
-      <section className="publications section" id="publikationen">
+      {currentPath === "/publikationen" && (
+      <>
+      <section className="publications section subpage-first" id="publikationen">
         <div className="section-label">
           <span>04</span>
           <p>Publikationen</p>
@@ -1209,8 +1343,12 @@ export default function App() {
           ))}
         </div>
       </section>
+      </>
+      )}
 
-      <section className="vita section" id="vita">
+      {currentPath === "/vita" && (
+      <>
+      <section className="vita section subpage-first" id="vita">
         <div className="section-label">
           <span>05</span>
           <p>Vita</p>
@@ -1225,8 +1363,10 @@ export default function App() {
             </p>
             <figure className="vita-media">
               <img
-                src="/philipp-graef-hd.webp"
+                src="/philipp-graef-original.jpg"
                 alt="Philipp Graef"
+                width={560}
+                height={708}
                 loading="lazy"
                 decoding="async"
               />
@@ -1345,8 +1485,11 @@ export default function App() {
           <Plus open={showAllTalks} />
         </button>
       </section>
+      </>
+      )}
 
-      <section className="sports section" id="sport" aria-labelledby="sports-title">
+      {currentPath === "/sport" && (
+      <section className="sports section subpage-first" id="sport" aria-labelledby="sports-title">
         <div className="section-label">
           <span>06</span>
           <p>Sport</p>
@@ -1385,7 +1528,9 @@ export default function App() {
           ))}
         </div>
       </section>
+      )}
 
+      {currentPath === "/profil" && (
       <section className="facets section" aria-labelledby="facets-title">
         <div className="facets-intro">
           <p className="kicker">Weitere Facetten</p>
@@ -1431,8 +1576,10 @@ export default function App() {
           </article>
         </div>
       </section>
+      )}
 
-      <section className="contact section" id="kontakt">
+      {currentPath === "/kontakt" && (
+      <section className="contact section subpage-first" id="kontakt">
         <div className="contact-shape contact-shape-one" aria-hidden="true" />
         <div className="contact-shape contact-shape-two" aria-hidden="true" />
         <figure className="contact-visual" aria-hidden="true">
@@ -1462,29 +1609,20 @@ export default function App() {
           <span>Dr. med. Ass. iur. Philipp Graef, LL.M. (Medizinrecht)</span>
         </div>
       </section>
+      )}
 
-      <footer>
-        <div className="footer-brand">
-          <img className="brand-mark" src="/favicon.svg" alt="" />
-          <p>
-            Dr. med. Ass. iur. Philipp Graef, LL.M. (Medizinrecht)
-            <br />
-            Arzt · Hochschullehrer · Unternehmer
-          </p>
-        </div>
-        <p className="footer-note">
-          Die Inhalte dienen der Information und ersetzen keine medizinische
-          oder rechtliche Beratung im Einzelfall.
-        </p>
-        <div className="footer-links">
-          <div className="footer-legal">
-            <a href="/impressum">Impressum</a>
-            <a href="/datenschutz">Datenschutz</a>
-            <a href="#top">Nach oben <Arrow direction="up" /></a>
-          </div>
-          <span>© {new Date().getFullYear()} Dr. med. Ass. iur. Philipp Graef, LL.M. (Medizinrecht)</span>
-        </div>
-      </footer>
+      {!isKnownPage && (
+        <section className="not-found section subpage-first" aria-labelledby="not-found-title">
+          <p className="kicker">404 · Seite nicht gefunden</p>
+          <h1 id="not-found-title">Hier geht es gerade nicht weiter.</h1>
+          <p>Die gesuchte Seite existiert nicht oder wurde verschoben.</p>
+          <a className="button button-ink" href="/">
+            Zur Startseite <Arrow />
+          </a>
+        </section>
+      )}
+
+      <SiteFooter />
     </main>
   );
 }

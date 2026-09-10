@@ -9,7 +9,8 @@ const mimeTypes = {
   ".png": "image/png",
   ".svg": "image/svg+xml; charset=utf-8",
   ".txt": "text/plain; charset=utf-8",
-  ".webp": "image/webp"
+  ".webp": "image/webp",
+  ".xml": "application/xml; charset=utf-8"
 };
 
 let html = await readFile(resolve(dist, "index.html"), "utf8");
@@ -35,10 +36,11 @@ for (const match of [
 }
 
 const publicAssets = [
-  "/philipp-graef-hd.webp",
+  "/philipp-graef-original.jpg",
   "/save-order-safe-logo.webp",
   "/buch-gebaermuttertransplantation.webp",
   "/die-leisen-abstaende-cover.jpg",
+  "/gesundheit-verstehen-kajo-cover.jpg",
   "/recht-medizinisch-cover.jpg",
   "/editorial/medicine-law.webp",
   "/editorial/knowledge.webp",
@@ -48,7 +50,8 @@ const publicAssets = [
   "/editorial/connection.webp",
   "/og.png",
   "/favicon.svg",
-  "/robots.txt"
+  "/robots.txt",
+  "/sitemap.xml"
 ];
 
 const assets = {};
@@ -105,6 +108,22 @@ export default {
     const htmlRoutes = new Set([
       "/",
       "/index.html",
+      "/profil",
+      "/profil/",
+      "/projekte",
+      "/projekte/",
+      "/buecher",
+      "/buecher/",
+      "/save-order-safe",
+      "/save-order-safe/",
+      "/publikationen",
+      "/publikationen/",
+      "/vita",
+      "/vita/",
+      "/sport",
+      "/sport/",
+      "/kontakt",
+      "/kontakt/",
       "/impressum",
       "/impressum/",
       "/datenschutz",

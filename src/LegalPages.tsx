@@ -1,4 +1,6 @@
 import { useEffect, type ReactNode } from "react";
+import { SiteFooter } from "./SiteFooter";
+import { SiteHeader } from "./SiteHeader";
 
 type LegalPageKind = "impressum" | "datenschutz";
 
@@ -350,7 +352,8 @@ const Datenschutz = ({ isGitHubPages }: { isGitHubPages: boolean }) => (
         <p className="legal-kicker">Externe Ziele</p>
         <h2>Verlinkte Websites</h2>
         <p>
-          Spotify, Verlage, Fachportale und Save Order Safe werden ausschließlich
+          Podcast-Plattformen, App Stores, Verlage, Fachportale sowie die
+          Websites von Save Order Safe und PG Apps werden ausschließlich
           verlinkt und nicht in die Website eingebettet. Erst beim Aufruf eines
           solchen Links verarbeitet der jeweilige externe Anbieter Daten nach
           seinen eigenen Datenschutzbestimmungen.
@@ -438,16 +441,7 @@ export function LegalPage({ kind }: { kind: LegalPageKind }) {
 
   return (
     <div className="legal-page" id="top">
-      <header className="legal-header">
-        <a className="legal-brand" href="/" aria-label="Zur Startseite">
-          <img className="brand-mark" src="/favicon.svg" alt="" />
-          <span>Dr. med. Ass. iur. Philipp Graef, LL.M. (Medizinrecht)</span>
-        </a>
-        <a className="legal-back" href="/">
-          Zur Website
-          <ExternalArrow />
-        </a>
-      </header>
+      <SiteHeader />
 
       <main className="legal-main">
         {kind === "impressum" ? (
@@ -455,16 +449,10 @@ export function LegalPage({ kind }: { kind: LegalPageKind }) {
         ) : (
           <Datenschutz isGitHubPages={isGitHubPages} />
         )}
+        <p className="legal-updated">Stand: 29. August 2026</p>
       </main>
 
-      <div className="legal-footer">
-        <p>Stand: 29. August 2026</p>
-        <nav aria-label="Rechtliche Navigation">
-          <a href="/impressum">Impressum</a>
-          <a href="/datenschutz">Datenschutz</a>
-          <a href="/">Startseite</a>
-        </nav>
-      </div>
+      <SiteFooter />
     </div>
   );
 }
