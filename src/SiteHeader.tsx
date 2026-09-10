@@ -28,8 +28,17 @@ const navigation = [
   ["Sport", "/sport/"]
 ] as const;
 
+const subnavigation: Record<string, readonly (readonly [string, string])[]> = {
+  "/profil/": [["Über mich", "/profil/#profil"], ["Weitere Facetten", "/profil/#facetten"]],
+  "/projekte/": [["Aktuelle Projekte", "/projekte/#projekte"], ["PG Apps · App-Entwicklung", "/projekte/#apps"]],
+  "/buecher/": [["Gesundheit verstehen mit Kajo", "/buecher/#kajo"], ["Die leisen Abstände zwischen uns", "/buecher/#leise-abstaende"], ["Die Gebärmuttertransplantation", "/buecher/#gebaermuttertransplantation"]],
+  "/publikationen/": [["Fachpublikationen", "/publikationen/#publikationen"], ["Recht Medizinisch · Podcast", "/publikationen/#podcast"]],
+  "/vita/": [["Berufliche Stationen", "/vita/#vita"], ["Ausbildung & Abschlüsse", "/vita/#ausbildung"], ["Vorträge & Impulse", "/vita/#vortraege"]]
+};
+
 export function SiteHeader() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [openCategory, setOpenCategory] = useState<string | null>(null);
   const currentPath = window.location.pathname.replace(/\/+$/, "") || "/";
 
   return (
@@ -44,16 +53,33 @@ export function SiteHeader() {
       <nav
         className={menuOpen ? "is-open" : ""}
         aria-label="Hauptnavigation"
-        onClick={() => setMenuOpen(false)}
+        onKeyDown={(event) => {
+          if (event.key === "Escape") { setOpenCategory(null); setMenuOpen(false); }
+        }}
       >
         {navigation.map(([label, href]) => (
+          <div className="nav-category" key={href}
+            onBlur={(event) => { if (!event.currentTarget.contains(event.relatedTarget)) setOpenCategory(null); }}>
           <a
             href={href}
             aria-current={currentPath === href.replace(/\/+$/, "") ? "page" : undefined}
-            key={href}
+            onClick={() => { setMenuOpen(false); setOpenCategory(null); }}
           >
             {label}
           </a>
+          {subnavigation[href] && <>
+            <button type="button" className="nav-expand"
+              aria-label={`${label}: Unterpunkte ${openCategory === href ? "schließen" : "öffnen"}`}
+              aria-expanded={openCategory === href} aria-controls={`submenu-${label}`}
+              onClick={() => setOpenCategory(openCategory === href ? null : href)}>
+              <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m4 6 4 4 4-4" fill="none" stroke="currentColor" strokeWidth="1.5" /></svg>
+            </button>
+            <div id={`submenu-${label}`} className="nav-submenu" hidden={openCategory !== href}>
+              {subnavigation[href].map(([title, target]) => <a key={target} href={target}
+                onClick={() => { setMenuOpen(false); setOpenCategory(null); }}>{title}</a>)}
+            </div>
+          </>}
+          </div>
         ))}
         <a
           className="nav-contact"

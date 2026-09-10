@@ -24,7 +24,7 @@ export function SiteFooter() {
         <p>
           Dr. med. Ass. iur. Philipp Graef, LL.M. (Medizinrecht)
           <br />
-          Arzt · Hochschullehrer · Unternehmer
+          Arzt · Jurist · Hochschullehrer · Autor · Unternehmer · App-Entwickler · Pionier
         </p>
       </div>
       <p className="footer-note">

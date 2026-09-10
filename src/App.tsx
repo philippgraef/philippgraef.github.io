@@ -557,7 +557,7 @@ const projects = [
 const qualifications = [
   "Dr. med.",
   "Ass. iur.",
-  "LL.M. Medizinrecht",
+  "LL.M. (Medizinrecht)",
   "Hochschullehrer",
   "Autor",
   "Unternehmer",
@@ -631,6 +631,17 @@ export default function App() {
   const [showEducation, setShowEducation] = useState(false);
   const [showAllTalks, setShowAllTalks] = useState(false);
   const currentPath = window.location.pathname.replace(/\/+$/, "") || "/";
+
+  useEffect(() => {
+    const followAnchor = () => {
+      const anchor = window.location.hash.slice(1);
+      if (anchor === "ausbildung") setShowEducation(true);
+      window.requestAnimationFrame(() => document.getElementById(anchor)?.scrollIntoView());
+    };
+    followAnchor();
+    window.addEventListener("hashchange", followAnchor);
+    return () => window.removeEventListener("hashchange", followAnchor);
+  }, []);
 
   useEffect(() => {
     const titles: Record<string, string> = {
@@ -953,32 +964,26 @@ export default function App() {
             PG Apps entdecken <Arrow diagonal />
           </a>
         </div>
-        <div className="apps-studio-visual" aria-label="Visualisierung des App-Entwicklungsprozesses">
-          <div className="app-phone app-phone-back" aria-hidden="true">
-            <span />
-            <strong>RLY?</strong>
-            <i />
-            <i />
+        <div className="app-showcase">
+          <div className="app-showcase-heading"><span>PG / DIGITAL STUDIO</span><p>Ideen nehmen Form an.</p></div>
+          <div className="app-showcase-grid">
+            {[
+              { name: "Recht Medizinisch", icon: "recht-medizinisch", route: "recht-medizinisch", text: "Medizinrecht lernen & anwenden" },
+              { name: "ORYDO", icon: "orydo", route: "orydo", text: "Dokumente & nächste Schritte" },
+              { name: "RLY?", icon: "rly", route: "rly", text: "Realness-Checks für digitale Inhalte" },
+              { name: "FoxieVoyage", icon: "foxievoyage", route: "storyvoyage", text: "Bücher sammeln & Reisen festhalten" },
+              { name: "RYNOLO", icon: "rynolo", route: "rynolo", text: "Reiseerinnerungen & Entdeckungen" },
+              { name: "THIRTY", icon: "thirty", route: "thirty", text: "Medizin in kurzen Lernpfaden" }
+            ].map((app) => (
+              <a className="app-preview" href={`https://pg-apps.github.io/apps/${app.route}/`} target="_blank" rel="noreferrer" key={app.icon}>
+                <img src={`/pg-apps/${app.icon}.png`} width={96} height={96} alt={`${app.name} App-Logo`} loading="lazy" />
+                <h3>{app.name}</h3><p>{app.text}</p>
+                <span className="app-preview-status">{app.icon === "rynolo" ? "Einreichung vorbereitet" : "In Vorbereitung"}</span>
+                <span className="app-preview-link">App ansehen <Arrow diagonal /></span>
+              </a>
+            ))}
           </div>
-          <div className="app-phone app-phone-front" aria-hidden="true">
-            <span />
-            <small>PG APPS</small>
-            <strong>IDEA<br />TO<br />IMPACT</strong>
-            <i />
-          </div>
-          <div className="apps-code-card" aria-hidden="true">
-            <span>01</span><b>PRODUCT</b>
-            <span>02</span><b>DESIGN</b>
-            <span>03</span><b>CODE</b>
-            <span>04</span><b>RELEASE</b>
-          </div>
-          <div className="apps-tags" aria-hidden="true">
-            <span>Produktidee</span>
-            <span>UX/UI</span>
-            <span>iOS</span>
-            <span>Web</span>
-            <span>Release</span>
-          </div>
+          <p className="app-showcase-note">Ein erster Einblick: Diese Apps sind noch nicht im App Store veröffentlicht.</p>
         </div>
       </section>
       </>
@@ -1114,7 +1119,7 @@ export default function App() {
         </div>
 
         <div className="library-grid">
-          <article className="library-card library-card-children">
+          <article className="library-card library-card-children" id="kajo">
             <div className="library-cover">
               <span className="library-orbit" aria-hidden="true" />
               <img
@@ -1151,7 +1156,7 @@ export default function App() {
             </div>
           </article>
 
-          <article className="library-card library-card-literary">
+          <article className="library-card library-card-literary" id="leise-abstaende">
             <div className="library-cover">
               <span className="library-orbit" aria-hidden="true" />
               <img
@@ -1190,7 +1195,7 @@ export default function App() {
             </div>
           </article>
 
-          <article className="library-card library-card-academic">
+          <article className="library-card library-card-academic" id="gebaermuttertransplantation">
             <div className="library-cover">
               <span className="library-index" aria-hidden="true">74</span>
               <img
@@ -1282,7 +1287,7 @@ export default function App() {
         </button>
       </section>
 
-      <section className="podcast section" aria-labelledby="podcast-title">
+      <section className="podcast section" id="podcast" aria-labelledby="podcast-title">
         <div className="podcast-art">
           <div className="podcast-blob" aria-hidden="true" />
           <img
@@ -1401,7 +1406,7 @@ export default function App() {
           </div>
         </div>
 
-        <div className="education-panel">
+        <div className="education-panel" id="ausbildung">
           <button
             type="button"
             aria-expanded={showEducation}
@@ -1531,7 +1536,7 @@ export default function App() {
       )}
 
       {currentPath === "/profil" && (
-      <section className="facets section" aria-labelledby="facets-title">
+      <section className="facets section" id="facetten" aria-labelledby="facets-title">
         <div className="facets-intro">
           <p className="kicker">Weitere Facetten</p>
           <h2 id="facets-title">Neugier, Ausdauer und Verbundenheit.</h2>

@@ -36,6 +36,12 @@ for (const match of [
 }
 
 const publicAssets = [
+  "/pg-apps/recht-medizinisch.png",
+  "/pg-apps/orydo.png",
+  "/pg-apps/rly.png",
+  "/pg-apps/foxievoyage.png",
+  "/pg-apps/rynolo.png",
+  "/pg-apps/thirty.png",
   "/philipp-graef-original.jpg",
   "/save-order-safe-logo.webp",
   "/buch-gebaermuttertransplantation.webp",
