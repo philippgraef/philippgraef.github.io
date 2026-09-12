@@ -65,7 +65,7 @@ const Impressum = () => (
           <a href="mailto:graef.philipp@googlemail.com">
             graef.philipp@googlemail.com
           </a>
-          <a href="tel:+4917661982662">+49 176 61982662</a>
+          <a href="tel:+491777981364">+49 177 7981364</a>
         </div>
       </section>
 
@@ -207,7 +207,7 @@ const Datenschutz = ({ isGitHubPages }: { isGitHubPages: boolean }) => (
           <a href="mailto:graef.philipp@googlemail.com">
             graef.philipp@googlemail.com
           </a>
-          <a href="tel:+4917661982662">+49 176 61982662</a>
+          <a href="tel:+491777981364">+49 177 7981364</a>
         </div>
       </section>
 
