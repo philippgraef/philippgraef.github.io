@@ -965,25 +965,23 @@ export default function App() {
           </a>
         </div>
         <div className="app-showcase">
-          <div className="app-showcase-heading"><span>PG / DIGITAL STUDIO</span><p>Ideen nehmen Form an.</p></div>
+          <div className="app-showcase-heading"><span>PG / DIGITAL STUDIO</span><p>Jetzt im App Store.</p></div>
           <div className="app-showcase-grid">
             {[
-              { name: "Recht Medizinisch", icon: "recht-medizinisch", route: "recht-medizinisch", text: "Medizinrecht lernen & anwenden" },
-              { name: "ORYDO", icon: "orydo", route: "orydo", text: "Dokumente & nächste Schritte" },
-              { name: "RLY?", icon: "rly", route: "rly", text: "Realness-Checks für digitale Inhalte" },
-              { name: "FoxieVoyage", icon: "foxievoyage", route: "storyvoyage", text: "Bücher sammeln & Reisen festhalten" },
-              { name: "RYNOLO", icon: "rynolo", route: "rynolo", text: "Reiseerinnerungen & Entdeckungen" },
-              { name: "THIRTY", icon: "thirty", route: "thirty", text: "Medizin in kurzen Lernpfaden" }
+              { name: "Funkle", icon: "funkle", id: "6807551305", text: "Ein kleiner nächster Schritt für deinen Alltag" },
+              { name: "RYNOLO", icon: "rynolo", id: "6807559572", text: "Private Reisekarte, Entdeckungen & Verified XP" },
+              { name: "nadumo", icon: "nadumo", id: "6807579632", text: "Dokumente erfassen & nächste Schritte erledigen" },
+              { name: "Pond Sparks", icon: "pond-sparks", id: "6815104955", text: "Mit Gefühl angeln & deinen eigenen Teich füllen" }
             ].map((app) => (
-              <a className="app-preview" href={`https://pg-apps.github.io/apps/${app.route}/`} target="_blank" rel="noreferrer" key={app.icon}>
+              <a className="app-preview is-published" href={`https://apps.apple.com/de/app/id${app.id}`} target="_blank" rel="noreferrer" key={app.icon}>
                 <img src={`/pg-apps/${app.icon}.png`} width={96} height={96} alt={`${app.name} App-Logo`} loading="lazy" />
                 <h3>{app.name}</h3><p>{app.text}</p>
-                <span className="app-preview-status">{app.icon === "rynolo" ? "Einreichung vorbereitet" : "In Vorbereitung"}</span>
-                <span className="app-preview-link">App ansehen <Arrow diagonal /></span>
+                <span className="app-preview-status">Im App Store</span>
+                <span className="app-preview-link">Im App Store ansehen <Arrow diagonal /></span>
               </a>
             ))}
           </div>
-          <p className="app-showcase-note">Ein erster Einblick: Diese Apps sind noch nicht im App Store veröffentlicht.</p>
+          <p className="app-showcase-note">Funkle, RYNOLO, nadumo und Pond Sparks sind im App Store verfügbar. Support und Rechtliches findest du bei PG Apps.</p>
         </div>
       </section>
       </>

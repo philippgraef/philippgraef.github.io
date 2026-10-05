@@ -125,6 +125,7 @@ main { position: relative; z-index: 1; }
 .app-preview { display: flex; flex-direction: column; align-items: start; padding: 22px; border: 1px solid rgba(255,255,255,.13); border-radius: 28px 8px 28px 28px; background: rgba(255,255,255,.045); transition: background .2s,transform .2s; }
 .app-preview:hover { background: rgba(255,255,255,.09); transform: translateY(-4px); }
 .app-preview img { width: 76px; height: 76px; object-fit: contain; border-radius: 20px; filter: grayscale(.8); opacity: .68; box-shadow: 0 12px 24px rgba(0,0,0,.18); }
+.app-preview.is-published img { filter: none; opacity: 1; }
 .app-preview h3 { font-size: 23px; letter-spacing: -.035em; margin: 20px 0 8px; }
 .app-preview p { color: rgba(255,253,249,.7); font-size: 14px; line-height: 1.5; margin-bottom: 18px; }
 .app-preview-status { margin-top: auto; color: var(--pink-soft); font-size: 12px; line-height: 1.5; padding: 5px 9px; border: 1px solid rgba(241,169,191,.3); border-radius: 999px; }
