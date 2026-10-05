@@ -1018,7 +1018,7 @@ export default function App() {
           <div className="venture-intro">
             <a
               className="venture-logo"
-              href="https://saveordersafe.com/"
+              href="https://info.saveordersafe.com/"
               target="_blank"
               rel="noreferrer"
               aria-label="Save Order Safe – Unternehmenswebsite öffnen"
@@ -1041,7 +1041,7 @@ export default function App() {
               </p>
               <a
                 className="button button-light"
-                href="https://saveordersafe.com/"
+                href="https://info.saveordersafe.com/"
                 target="_blank"
                 rel="noreferrer"
               >
