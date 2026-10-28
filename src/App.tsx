@@ -402,6 +402,18 @@ const episodes = [
     title: "So viel wie nötig, so wenig wie möglich – Defensivmedizin und Überdiagnostik",
     meta: "24.08.2026 · Diagnostik · Verantwortung",
     href: "https://open.spotify.com/show/7aowMbc68QlEwd0K4x5OT8"
+  },
+  {
+    number: "06",
+    title: "Status quo – Was gilt eigentlich? Leitlinie, Richtlinie oder SOP",
+    meta: "Fachliche Standards · Rechtswirkung · 46:05",
+    href: "https://open.spotify.com/episode/1mlnkZz01jTKrqL5R1Yepe"
+  },
+  {
+    number: "07",
+    title: "Diagnose? Kaputt gespart",
+    meta: "27.10.2026 · Gesundheits- und Krankenhausfinanzierung · 36:46",
+    href: "https://creators.spotify.com/pod/profile/schleppleflorian/episodes/Folge-7---Diagnose--Kaputt-gespart-e3r4h97"
   }
 ];
 
@@ -422,8 +434,8 @@ const podcastPlatforms = [
     icon: "amazon"
   },
   {
-    label: "Podcast-Website",
-    href: "https://pg-rechtmedizinisch.github.io/",
+    label: "Lernplattform",
+    href: "https://rechtmedizinisch.github.io/",
     icon: "website"
   }
 ] as const;
@@ -1323,6 +1335,11 @@ export default function App() {
                 <PodcastPlatformIcon name={platform.icon} />
               </a>
             ))}
+          </div>
+          <p className="podcast-hosts">Weiterlernen in der App und im Browser: 15 Kurse mit gemeinsamem Zugang. Das große Inhaltsupdate ergänzt den Berliner Zwillingsfall, Medikamentenfälle, vollständige Schemata und passende Übungen. Die neuen Inhalte sind im Web verfügbar und für Apple-Version 1.2 vorbereitet.</p>
+          <div className="podcast-platforms" aria-label="Lernangebote">
+            <a className="button button-light" href="https://rechtmedizinisch.github.io/" target="_blank" rel="noreferrer">Lernplattform öffnen</a>
+            <a className="button button-light" href="https://apps.apple.com/de/app/recht-medizinisch/id6809199673" target="_blank" rel="noreferrer">Recht Medizinisch im App Store</a>
           </div>
         </div>
         <div className="podcast-episodes">
