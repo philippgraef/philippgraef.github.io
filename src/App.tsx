@@ -1336,7 +1336,7 @@ export default function App() {
               </a>
             ))}
           </div>
-          <p className="podcast-hosts">Weiterlernen in der App und im Browser: 15 Kurse mit gemeinsamem Zugang. Das große Inhaltsupdate ergänzt den Berliner Zwillingsfall, Medikamentenfälle, vollständige Schemata und passende Übungen. Die Web-Lernplattform ergänzt eine Fallwerkstatt mit 20 Originalfällen, eine interaktive Strafakte und elf neue Verfahrensansichten. Die Übungsbereiche haben eigene Fortschrittsanzeigen; bestehende Kursabschlüsse und gemeinsame Freischaltungen bleiben erhalten. Die Apple-Erweiterung ist für Version 1.3 vorbereitet; den veröffentlichten Versionsstand zeigt der App Store.</p>
+          <p className="podcast-hosts">Weiterlernen in der App und im Browser: 15 Kurse mit gemeinsamem Zugang. Das große Inhaltsupdate ergänzt den Berliner Zwillingsfall, Medikamentenfälle, vollständige Schemata und passende Übungen. Die Web-Lernplattform ergänzt eine Fallwerkstatt mit 40 Originalfällen, eine interaktive Strafakte und elf neue Verfahrensansichten. Die Übungsbereiche haben eigene Fortschrittsanzeigen; bestehende Kursabschlüsse und gemeinsame Freischaltungen bleiben erhalten. Die Apple-Erweiterung ist für Version 1.3 vorbereitet; den veröffentlichten Versionsstand zeigt der App Store.</p>
           <div className="podcast-platforms" aria-label="Lernangebote">
             <a className="button button-light" href="https://rechtmedizinisch.github.io/" target="_blank" rel="noreferrer">Lernplattform öffnen</a>
             <a className="button button-light" href="https://apps.apple.com/de/app/recht-medizinisch/id6809199673" target="_blank" rel="noreferrer">Recht Medizinisch im App Store</a>
